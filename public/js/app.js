@@ -1,6 +1,6 @@
 // Marketplace App - JavaScript
 
-const API_BASE = ''; // Same origin
+const API_BASE = '/api/v1'; // Same origin
 
 // ==================== Auth ====================
 
