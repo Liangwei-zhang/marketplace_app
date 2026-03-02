@@ -7,7 +7,7 @@ import os
 
 from app.core.config import settings
 from app.core.database import init_db
-from app.api import auth, items, chat, transaction, review, report, admin, favorite, push, history, follow
+from app.api import auth, items, chat, transaction, review, report, admin, favorite, push, history, follow, search_history, analytics
 from app.websocket import chat as ws_chat
 
 
@@ -67,6 +67,8 @@ app.include_router(favorite.router, prefix="/api/v1")
 app.include_router(push.router, prefix="/api/v1")
 app.include_router(history.router, prefix="/api/v1")
 app.include_router(follow.router, prefix="/api/v1")
+app.include_router(search_history.router, prefix="/api/v1")
+app.include_router(analytics.router, prefix="/api/v1")
 
 # WebSocket endpoint
 @app.websocket("/ws/chat/{room_id}")

@@ -6,5 +6,6 @@ from app.models.favorite import Favorite
 from app.models.browse_history import BrowseHistory
 from app.models.follow import Follow
 from app.models.push import PushSubscription
+from app.models.search_history import SearchHistory
 
-__all__ = ["User", "Item", "ChatRoom", "Message", "Transaction", "Report", "Review", "Favorite", "BrowseHistory", "Follow", "PushSubscription"]
+__all__ = ["User", "Item", "ChatRoom", "Message", "Transaction", "Report", "Review", "Favorite", "BrowseHistory", "Follow", "PushSubscription", "SearchHistory"]

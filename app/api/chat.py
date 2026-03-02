@@ -202,3 +202,73 @@ async def send_message(
     await session.refresh(message)
     
     return message
+
+
+@router.get("/unread-count")
+async def get_unread_count(
+    current_user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    """获取未读消息数量"""
+    # Get all rooms for user
+    result = await session.execute(
+        select(ChatRoom).where(
+            (ChatRoom.buyer_id == current_user.id) | (ChatRoom.seller_id == current_user.id)
+        )
+    )
+    rooms = result.scalars().all()
+    
+    total_unread = 0
+    room_unread = {}
+    
+    for room in rooms:
+        result = await session.execute(
+            select(func.count(Message.id)).where(
+                Message.room_id == room.id,
+                Message.sender_id != current_user.id,
+                Message.is_read == False
+            )
+        )
+        count = result.scalar() or 0
+        total_unread += count
+        room_unread[room.id] = count
+    
+    return {
+        "total": total_unread,
+        "by_room": room_unread
+    }
+
+
+@router.post("/rooms/{room_id}/read")
+async def mark_as_read(
+    room_id: int,
+    current_user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    """标记房间消息为已读"""
+    # Verify room exists
+    result = await session.execute(select(ChatRoom).where(ChatRoom.id == room_id))
+    room = result.scalar_one_or_none()
+    
+    if not room:
+        raise HTTPException(status_code=404, detail="Chat room not found")
+    
+    if room.buyer_id != current_user.id and room.seller_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    # Mark all messages as read
+    result = await session.execute(
+        select(Message).where(
+            Message.room_id == room_id,
+            Message.sender_id != current_user.id,
+            Message.is_read == False
+        )
+    )
+    messages = result.scalars().all()
+    
+    for msg in messages:
+        msg.is_read = True
+    
+    await session.commit()
+    
+    return {"marked_count": len(messages)}
