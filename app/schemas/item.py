@@ -31,6 +31,7 @@ class ItemUpdate(BaseModel):
     description: Optional[str] = Field(None, min_length=1, max_length=2000)
     price: Optional[float] = Field(None, gt=0)
     category: Optional[str] = None
+    images: Optional[List[str]] = None
     status: Optional[int] = Field(None, ge=0, le=2)
 
 

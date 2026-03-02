@@ -264,6 +264,8 @@ async def update_item(
         item.category = item_data.category
     if item_data.status is not None:
         item.status = item_data.status
+    if item_data.images is not None:
+        item.images = json.dumps(item_data.images)
     
     await session.commit()
     await session.refresh(item)
