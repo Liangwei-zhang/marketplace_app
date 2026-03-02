@@ -30,6 +30,14 @@ class Settings(BaseSettings):
     RATE_LIMIT_LOGIN: int = 5  # per minute
     RATE_LIMIT_REGISTER: int = 3  # per minute
 
+    # S3/MinIO Storage
+    S3_ENABLED: bool = False
+    S3_ENDPOINT: str = "localhost:9000"
+    S3_ACCESS_KEY: str = "minioadmin"
+    S3_SECRET_KEY: str = "minioadmin"
+    S3_BUCKET: str = "marketplace"
+    S3_PUBLIC_URL: str = ""
+
     class Config:
         env_file = ".env"
         case_sensitive = True

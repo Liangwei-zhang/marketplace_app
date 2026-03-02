@@ -1,10 +1,10 @@
 import os
 import json
 import asyncio
-from typing import List, Optional
+from typing import List
 from PIL import Image
-from fastapi import UploadFile, BackgroundTasks
 from app.core.config import settings
+from app.services.storage import storage
 
 
 class ImageService:
@@ -29,8 +29,17 @@ class ImageService:
         
         return output_path
 
-    async def save_upload(self, file: UploadFile, user_id: int) -> str:
-        """Save uploaded file with compression."""
+    def create_thumbnail(self, input_path: str, output_path: str, size: tuple = (200, 200)) -> str:
+        """Create thumbnail for image."""
+        with Image.open(input_path) as img:
+            # Create thumbnail (maintain aspect ratio)
+            img.thumbnail(size, Image.Resampling.LANCZOS)
+            img.save(output_path, "JPEG", quality=70, optimize=True)
+        
+        return output_path
+
+    async def save_upload(self, file, user_id: int) -> str:
+        """Save uploaded file with compression and thumbnail."""
         # Read file
         content = await file.read()
         
@@ -40,22 +49,30 @@ class ImageService:
             ext = "jpg"
         
         filename = f"{user_id}_{int(asyncio.get_event_loop().time() * 1000)}.{ext}"
-        temp_path = os.path.join(settings.UPLOAD_DIR, f"temp_{filename}")
-        final_path = os.path.join(settings.UPLOAD_DIR, filename)
         
-        # Write temp file
-        with open(temp_path, "wb") as f:
-            f.write(content)
+        # Save to storage (S3 or local)
+        url = await storage.upload_file(content, filename)
         
-        # Compress (run in thread to avoid blocking)
-        await asyncio.to_thread(self.compress_image, temp_path, final_path)
-        
-        # Remove temp
-        os.remove(temp_path)
+        # For local storage, also compress
+        if not storage.use_s3:
+            temp_path = os.path.join(settings.UPLOAD_DIR, f"temp_{filename}")
+            final_path = os.path.join(settings.UPLOAD_DIR, filename)
+            
+            # Write temp file
+            with open(temp_path, "wb") as f:
+                f.write(content)
+            
+            # Compress
+            self.compress_image(temp_path, final_path)
+            os.remove(temp_path)
+            
+            # Create thumbnail
+            thumb_path = os.path.join(settings.UPLOAD_DIR, f"thumb_{filename}")
+            self.create_thumbnail(final_path, thumb_path)
         
         return filename
 
-    async def save_uploads(self, files: List[UploadFile], user_id: int) -> List[str]:
+    async def save_uploads(self, files: List, user_id: int) -> List[str]:
         """Save multiple uploaded files."""
         filenames = []
         for file in files:
@@ -66,15 +83,19 @@ class ImageService:
 
     def delete_image(self, filename: str) -> bool:
         """Delete image file."""
-        path = os.path.join(settings.UPLOAD_DIR, filename)
-        if os.path.exists(path):
-            os.remove(path)
-            return True
-        return False
+        return storage.delete_file(filename)
 
     def get_image_url(self, filename: str) -> str:
         """Get full URL for image."""
+        if storage.use_s3:
+            return f"{storage.public_url}/uploads/{filename}"
         return f"/uploads/{filename}"
+    
+    def get_thumbnail_url(self, filename: str) -> str:
+        """Get thumbnail URL for image."""
+        if storage.use_s3:
+            return f"{storage.public_url}/uploads/thumb_{filename}"
+        return f"/uploads/thumb_{filename}"
 
 
 image_service = ImageService()
