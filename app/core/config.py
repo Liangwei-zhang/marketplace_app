@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     # Image compression
     COMPRESSED_MAX_WIDTH: int = 1200
     COMPRESSED_QUALITY: int = 80
+    THUMBNAIL_SIZE: int = 200
+    WEBP_QUALITY: int = 80
 
     # CORS
     CORS_ORIGINS: list = ["*"]
