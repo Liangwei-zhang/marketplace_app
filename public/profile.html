@@ -52,6 +52,13 @@
             <button type="submit" class="btn btn-primary" style="width: 100%;">Save Changes</button>
         </form>
         
+        <!-- Reviews -->
+        <h3 class="page-title" style="margin-top: 32px;">My Reviews</h3>
+        <div id="reviewStats" style="margin-bottom: 16px;"></div>
+        <div id="reviewList">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+        
         <!-- Settings -->
         <h3 class="page-title" style="margin-top: 32px;">Settings</h3>
         <div class="card" style="padding: 16px;">
@@ -150,12 +157,62 @@
             }
         });
         
+        // Load reviews
+        async function loadReviews() {
+            try {
+                const user = await getMe();
+                const [stats, reviews] = await Promise.all([
+                    getReviewStats(user.id),
+                    getUserReviews(user.id)
+                ]);
+                
+                // Show stats
+                document.getElementById('reviewStats').innerHTML = `
+                    <div class="card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
+                        <div style="font-size: 32px; font-weight: 700; color: var(--accent);">
+                            ${stats.avg_rating}
+                        </div>
+                        <div>
+                            <div style="color: var(--text-secondary);">⭐ ${stats.avg_rating} (${stats.total_reviews} reviews)</div>
+                        </div>
+                    </div>
+                `;
+                
+                if (reviews.length === 0) {
+                    document.getElementById('reviewList').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">⭐</div>
+                            <p>No reviews yet</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                document.getElementById('reviewList').innerHTML = reviews.map(review => `
+                    <div class="card" style="padding: 12px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="font-weight: 500;">${review.reviewer_name || 'Anonymous'}</div>
+                            <div>${'⭐'.repeat(review.rating)}</div>
+                        </div>
+                        ${review.content ? `<div style="margin-top: 8px; color: var(--text-secondary);">${review.content}</div>` : ''}
+                        <div style="margin-top: 8px; font-size: 12px; color: var(--text-secondary);">
+                            ${formatDate(review.created_at)}
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (err) {
+                console.error('Load reviews error:', err);
+            }
+        }
+        
         // Logout
         document.getElementById('logoutBtn').addEventListener('click', () => {
             logout();
         });
         
         loadProfile();
+        loadReviews();
     </script>
 </body>
 </html>

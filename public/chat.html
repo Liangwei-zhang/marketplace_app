@@ -172,6 +172,14 @@
                                     </button>
                                 </div>
                             ` : ''}
+                            
+                            ${trans.status === 'completed' ? `
+                                <div style="margin-top: 12px;">
+                                    <button class="btn btn-outline btn-sm" style="width: 100%;" onclick="openReviewModal(${trans.id})">
+                                        ⭐ Leave Review
+                                    </button>
+                                </div>
+                            ` : ''}
                         </div>
                     `;
                 }).join('');
@@ -180,6 +188,68 @@
                 document.getElementById('transactionList').innerHTML = `<div class="empty-state">Error: ${err.message}</div>`;
             }
         }
+        
+        // Review modal
+        function openReviewModal(transactionId) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay active';
+            modal.innerHTML = `
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Leave a Review</h3>
+                        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="form-label">Rating</label>
+                            <div style="display: flex; gap: 8px;">
+                                ${[1,2,3,4,5].map(n => `
+                                    <button type="button" class="btn btn-outline" onclick="selectRating(${n})" id="rating-${n}">
+                                        ${'⭐'.repeat(n)}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <input type="hidden" id="reviewRating" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Review (optional)</label>
+                            <textarea class="form-textarea" id="reviewContent" placeholder="Share your experience..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="this.closest('.modal-overlay').remove()">Cancel</button>
+                        <button class="btn btn-accent" onclick="submitReview(${transactionId})">Submit Review</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        window.selectRating = function(n) {
+            document.querySelectorAll('[id^="rating-"]').forEach((btn, i) => {
+                btn.classList.toggle('active', i < n);
+            });
+            document.getElementById('reviewRating').value = n;
+        };
+        
+        window.submitReview = async function(transactionId) {
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const content = document.getElementById('reviewContent').value;
+            
+            if (rating === 0) {
+                showToast('Please select a rating', 'error');
+                return;
+            }
+            
+            try {
+                await createReview(transactionId, rating, content);
+                showToast('Review submitted!', 'success');
+                document.querySelector('.modal-overlay').remove();
+                loadTransactions();
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        };
         
         async function handleTransaction(status, id) {
             try {

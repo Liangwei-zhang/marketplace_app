@@ -218,6 +218,43 @@ async function cancelTransaction(id) {
     return data;
 }
 
+// ==================== Reviews ====================
+
+async function createReview(transactionId, rating, content = '') {
+    const res = await fetch(`${API_BASE}/reviews/`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getToken()}`
+        },
+        body: JSON.stringify({ 
+            transaction_id: transactionId,
+            rating,
+            content
+        })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Review failed');
+    return data;
+}
+
+async function getUserReviews(userId, limit = 20, offset = 0) {
+    const res = await fetch(`${API_BASE}/reviews/user/${userId}?limit=${limit}&offset=${offset}`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function getReviewStats(userId) {
+    const res = await fetch(`${API_BASE}/reviews/stats/${userId}`);
+    return res.json();
+}
+
+async function getTransactionReviews(transactionId) {
+    const res = await fetch(`${API_BASE}/reviews/transaction/${transactionId}`);
+    return res.json();
+}
+
 // ==================== Chat ====================
 
 async function createChatRoom(itemId) {
