@@ -38,6 +38,12 @@ class Settings(BaseSettings):
     S3_BUCKET: str = "marketplace"
     S3_PUBLIC_URL: str = ""
 
+    # Redis Cache
+    REDIS_ENABLED: bool = False
+    REDIS_URL: str = "redis://localhost:6379/0"
+    CACHE_TTL_ITEMS: int = 300  # 5 minutes
+    CACHE_TTL_USER: int = 600  # 10 minutes
+
     class Config:
         env_file = ".env"
         case_sensitive = True

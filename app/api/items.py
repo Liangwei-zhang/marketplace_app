@@ -14,6 +14,7 @@ from app.api.auth import get_current_user
 from app.models import User, Item
 from app.schemas import ItemCreate, ItemUpdate, ItemResponse, ItemSearchRequest, CategoryListResponse
 from app.services import image_service
+from app.services.cache import cache, CacheKeys
 
 router = APIRouter(prefix="/items", tags=["items"])
 
@@ -21,7 +22,17 @@ router = APIRouter(prefix="/items", tags=["items"])
 @router.get("/categories", response_model=CategoryListResponse)
 async def list_categories():
     """Get all available categories."""
-    return CategoryListResponse(categories=ItemCategory.choices())
+    # Try cache first
+    cached = await cache.get(CacheKeys.CATEGORIES)
+    if cached:
+        return CategoryListResponse(categories=cached)
+    
+    categories = ItemCategory.choices()
+    
+    # Cache for 1 hour
+    await cache.set(CacheKeys.CATEGORIES, categories, ttl=3600)
+    
+    return CategoryListResponse(categories=categories)
 
 
 @router.post("/", response_model=ItemResponse, status_code=201)
@@ -224,6 +235,12 @@ async def get_item(
     session: AsyncSession = Depends(get_async_session)
 ):
     """Get item by ID."""
+    # Try cache first
+    cache_key = CacheKeys.ITEM.format(item_id=item_id)
+    cached = await cache.get(cache_key)
+    if cached:
+        return cached
+    
     result = await session.execute(select(Item).where(Item.id == item_id))
     item = result.scalar_one_or_none()
     
@@ -234,7 +251,28 @@ async def get_item(
     item.view_count += 1
     await session.commit()
     
-    return item
+    # Convert to response (handle images)
+    response = ItemResponse(
+        id=item.id,
+        title=item.title,
+        description=item.description,
+        price=item.price,
+        category=item.category,
+        latitude=item.latitude,
+        longitude=item.longitude,
+        address=item.address,
+        images=json.loads(item.images) if item.images else [],
+        status=item.status,
+        seller_id=item.seller_id,
+        view_count=item.view_count,
+        created_at=item.created_at,
+        updated_at=item.updated_at
+    )
+    
+    # Cache for 5 minutes
+    await cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_ITEMS)
+    
+    return response
 
 
 @router.put("/{item_id}", response_model=ItemResponse)
