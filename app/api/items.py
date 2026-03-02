@@ -108,8 +108,9 @@ async def search_items_nearby(
     search: ItemSearchRequest,
     session: AsyncSession = Depends(get_async_session)
 ):
-    """Search items by location with expanding radius fallback.
+    """Search items by location using PostGIS.
     
+    Uses ST_DWithin with geography for efficient spatial queries.
     If no results found in initial radius, automatically expands:
     5km → 10km → 20km → unlimited
     """
@@ -119,22 +120,23 @@ async def search_items_nearby(
     
     for radius in radii_to_try:
         if radius == 100:
-            # Unlimited search
+            # Unlimited search - use basic query
             base_query = """
                 SELECT id FROM items
                 WHERE status = 0
             """
             params = {}
         else:
-            # Distance-based search
+            # PostGIS spatial query using ST_DWithin with lat/lng
+            # Uses functional index for performance
             base_query = """
                 SELECT id FROM items
                 WHERE status = 0
-                AND (6371 * acos(
-                    cos(radians(:lat)) * cos(radians(latitude)) *
-                    cos(radians(longitude) - radians(:lng)) +
-                    sin(radians(:lat)) * sin(radians(latitude))
-                )) <= :radius
+                AND ST_DWithin(
+                    ST_MakePoint(longitude, latitude)::geography,
+                    ST_MakePoint(:lng, :lat)::geography,
+                    :radius * 1000
+                )
             """
             params = {
                 "lat": search.latitude,
@@ -163,8 +165,18 @@ async def search_items_nearby(
         
         where_clause = " AND ".join(conditions)
         
-        # Sort
-        if search.sort_by == "price":
+        # Sort by distance when using spatial query
+        if radius < 100 and search.sort_by == "created_at":
+            # Sort by distance for nearby searches
+            sort_clause = f"""
+                ORDER BY ST_Distance(
+                    ST_MakePoint(longitude, latitude)::geography,
+                    ST_MakePoint(:sort_lng, :sort_lat)::geography
+                ) {"ASC" if search.sort_order == "asc" else "DESC"}
+            """
+            params["sort_lat"] = search.latitude
+            params["sort_lng"] = search.longitude
+        elif search.sort_by == "price":
             sort_clause = "ORDER BY price " + ("ASC" if search.sort_order == "asc" else "DESC")
         else:
             sort_clause = "ORDER BY created_at " + ("ASC" if search.sort_order == "asc" else "DESC")
