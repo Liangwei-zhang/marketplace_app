@@ -13,8 +13,10 @@
             <div class="header-content">
                 <a href="index.html" class="logo">Market<span>place</span></a>
                 
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search items...">
+                <div class="search-box" style="position: relative;">
+                    <input type="text" id="searchInput" placeholder="Search items..." autocomplete="off">
+                    <div id="searchHistory" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid var(--border); border-radius: 8px; margin-top: 4px; z-index: 100; max-height: 200px; overflow-y: auto;">
+                    </div>
                 </div>
                 
                 <div class="header-actions">
@@ -97,10 +99,56 @@
         let searchTimeout;
         document.getElementById('searchInput').addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
+            searchTimeout = setTimeout(async () => {
+                const keyword = e.target.value.trim();
+                if (keyword.length > 0 && isLoggedIn()) {
+                    try {
+                        await addSearchHistory(keyword);
+                    } catch (err) {}
+                }
                 offset = 0;
                 loadItems();
             }, 300);
+            
+            // Show/hide search history
+            if (e.target.value.length === 0) {
+                showSearchHistory();
+            }
+        });
+        
+        // Show search history on focus
+        document.getElementById('searchInput').addEventListener('focus', showSearchHistory);
+        
+        async function showSearchHistory() {
+            if (!isLoggedIn()) return;
+            
+            try {
+                const history = await getSearchHistory();
+                if (history.length > 0) {
+                    const container = document.getElementById('searchHistory');
+                    container.innerHTML = history.map(kw => 
+                        `<div style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--border);" onclick="document.getElementById('searchInput').value='${kw}';document.getElementById('searchInput').dispatchEvent(new Event('input'));">
+                            🔍 ${kw}
+                        </div>`
+                    ).join('') + 
+                    `<div style="padding: 10px; text-align: center; cursor: pointer; color: var(--text-secondary);" onclick="clearSearch();">
+                        Clear history
+                    </div>`;
+                    container.style.display = 'block';
+                }
+            } catch (err) {}
+        }
+        
+        async function clearSearch() {
+            await clearSearchHistory();
+            document.getElementById('searchHistory').style.display = 'none';
+        }
+        
+        // Hide search history when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-box')) {
+                document.getElementById('searchHistory').style.display = 'none';
+            }
         });
         
         // Load items
@@ -244,6 +292,10 @@
         <a href="favorites.html" class="nav-item">
             <span class="nav-icon">❤️</span>
             <span>Favorites</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">👀</span>
+            <span>History</span>
         </a>
         <a href="chat.html" class="nav-item">
             <span class="nav-icon">💬</span>

@@ -329,6 +329,107 @@ async function uploadAvatar(file) {
     return data;
 }
 
+// ==================== History ====================
+
+async function addToHistory(itemId) {
+    const res = await fetch(`${API_BASE}/history/${itemId}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function getMyHistory() {
+    const res = await fetch(`${API_BASE}/history/`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function clearMyHistory() {
+    const res = await fetch(`${API_BASE}/history/`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+// ==================== Follow ====================
+
+async function followUser(userId) {
+    const res = await fetch(`${API_BASE}/follow/${userId}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Failed to follow');
+    return data;
+}
+
+async function unfollowUser(userId) {
+    const res = await fetch(`${API_BASE}/follow/${userId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Failed to unfollow');
+    return data;
+}
+
+async function getMyFollowing() {
+    const res = await fetch(`${API_BASE}/follow/following`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function getMyFollowers() {
+    const res = await fetch(`${API_BASE}/follow/followers`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function checkFollow(userId) {
+    const res = await fetch(`${API_BASE}/follow/check/${userId}`);
+    const data = await res.json();
+    return data.is_following;
+}
+
+// ==================== Search History ====================
+
+async function addSearchHistory(keyword) {
+    const res = await fetch(`${API_BASE}/search-history/?keyword=${encodeURIComponent(keyword)}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function getSearchHistory() {
+    const res = await fetch(`${API_BASE}/search-history/`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function clearSearchHistory() {
+    const res = await fetch(`${API_BASE}/search-history/`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+// ==================== Analytics ====================
+
+async function getMyAnalytics() {
+    const res = await fetch(`${API_BASE}/analytics/`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
 // ==================== Chat ====================
 
 async function createChatRoom(itemId) {

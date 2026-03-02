@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stats - Marketplace</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Market<span>place</span></a>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-outline">Home</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container main-content">
+        <h1 class="page-title">📊 My Stats</h1>
+        
+        <div id="statsContent">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+    </main>
+    
+    <script src="js/app.js"></script>
+    <script>
+        async function loadStats() {
+            try {
+                const stats = await getMyAnalytics();
+                
+                document.getElementById('statsContent').innerHTML = `
+                    <!-- Items Stats -->
+                    <div class="card" style="padding: 16px; margin-bottom: 16px;">
+                        <h3 style="margin-bottom: 12px;">📦 My Items</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700;">${stats.items.total}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Total</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--success);">${stats.items.active}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Active</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--accent);">${stats.items.sold}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Sold</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transactions -->
+                    <div class="card" style="padding: 16px; margin-bottom: 16px;">
+                        <h3 style="margin-bottom: 12px;">💰 Transactions</h3>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: center;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--success);">${stats.transactions.sales_completed}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Sales</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--primary);">${stats.transactions.purchases_completed}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Purchases</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social -->
+                    <div class="card" style="padding: 16px; margin-bottom: 16px;">
+                        <h3 style="margin-bottom: 12px;">👥 Social</h3>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700;">${stats.social.followers}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Followers</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700;">${stats.social.following}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Following</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--danger);">${stats.favorites.received}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Favorites</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: var(--accent);">${stats.reviews.received}</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Reviews</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Views -->
+                    <div class="card" style="padding: 16px;">
+                        <h3 style="margin-bottom: 12px;">👁️ Views</h3>
+                        <div style="text-align: center;">
+                            <div style="font-size: 36px; font-weight: 700;">${stats.views.total}</div>
+                            <div style="color: var(--text-secondary);">Total item views</div>
+                        </div>
+                    </div>
+                `;
+                
+            } catch (err) {
+                document.getElementById('statsContent').innerHTML = `
+                    <div class="empty-state">Error: ${err.message}</div>
+                `;
+            }
+        }
+        
+        loadStats();
+    </script>
+</body>
+</html>

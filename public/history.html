@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Marketplace</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Market<span>place</span></a>
+                <div class="header-actions">
+                    <a href="publish.html" class="btn btn-accent">+ Sell</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h1 class="page-title">👀 Browse History</h1>
+            <button class="btn btn-outline btn-sm" onclick="clearHistory()">Clear All</button>
+        </div>
+        
+        <div id="historyList">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+    </main>
+    
+    <!-- Nav -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="favorites.html" class="nav-item">
+            <span class="nav-icon">❤️</span>
+            <span>Favorites</span>
+        </a>
+        <a href="chat.html" class="nav-item">
+            <span class="nav-icon">💬</span>
+            <span>Chat</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+        </a>
+    </nav>
+    
+    <script src="js/app.js"></script>
+    <script>
+        async function loadHistory() {
+            try {
+                const items = await getMyHistory();
+                
+                if (items.length === 0) {
+                    document.getElementById('historyList').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">👀</div>
+                            <p>No browse history</p>
+                            <a href="index.html" class="btn btn-accent" style="margin-top: 16px;">Browse items</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                document.getElementById('historyList').innerHTML = `
+                    <div class="items-grid">
+                        ${items.map(item => {
+                            const images = Array.isArray(item.images) ? item.images : [];
+                            const imageUrl = images.length > 0 ? images[0] : null;
+                            
+                            return `
+                                <a href="item.html?id=${item.id}" class="card item-card">
+                                    ${imageUrl 
+                                        ? `<img src="${imageUrl}" alt="${item.title}" class="item-image">`
+                                        : '<div class="item-image-placeholder">📷</div>'
+                                    }
+                                    <div class="item-info">
+                                        <div class="item-price">${formatPrice(item.price)}</div>
+                                        <div class="item-title">${item.title}</div>
+                                        <div class="item-meta">
+                                            <span>${getCategoryLabel(item.category)}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+            } catch (err) {
+                document.getElementById('historyList').innerHTML = `
+                    <div class="empty-state">Error: ${err.message}</div>
+                `;
+            }
+        }
+        
+        async function clearHistory() {
+            if (!confirm('Clear all browse history?')) return;
+            
+            try {
+                await clearMyHistory();
+                showToast('History cleared', 'success');
+                loadHistory();
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+        
+        loadHistory();
+    </script>
+</body>
+</html>
