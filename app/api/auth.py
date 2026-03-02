@@ -1,15 +1,18 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Request
+from fastapi import APIRouter, Depends, HTTPException, status, Request, UploadFile, File
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.responses import FileResponse
 from sqlmodel import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 from datetime import datetime, timedelta, timezone
 
 from app.core.database import get_async_session
+from app.core.database import async_session_maker
 from app.core.security import verify_password, get_password_hash, create_access_token, decode_token
 from app.core.rate_limit import login_limiter, register_limiter
 from app.models import User
 from app.schemas import UserCreate, UserUpdate, UserResponse, Token, LoginRequest
+from app.services import image_service
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
@@ -209,3 +212,30 @@ async def confirm_password_reset(
     await session.commit()
     
     return {"message": "Password reset successful"}
+
+
+@router.post("/avatar")
+async def upload_avatar(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user)
+):
+    """上传用户头像"""
+    # Validate file type
+    ext = file.filename.split(".")[-1].lower() if "." in file.filename else ""
+    if ext not in {"jpg", "jpeg", "png", "gif", "webp"}:
+        raise HTTPException(status_code=400, detail="Invalid file type")
+    
+    # Save avatar
+    filenames = await image_service.save_uploads([file], current_user.id)
+    avatar_url = filenames[0] if filenames else None
+    
+    # Update user
+    async with async_session_maker() as session:
+        result = await session.execute(select(User).where(User.id == current_user.id))
+        user = result.scalar_one_or_none()
+        if user:
+            user.avatar_url = avatar_url
+            session.add(user)
+            await session.commit()
+    
+    return {"avatar_url": avatar_url}

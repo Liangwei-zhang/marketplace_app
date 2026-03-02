@@ -278,6 +278,57 @@ async function getMyReports() {
     return res.json();
 }
 
+// ==================== Favorites ====================
+
+async function addFavorite(itemId) {
+    const res = await fetch(`${API_BASE}/favorites/${itemId}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Failed to favorite');
+    return data;
+}
+
+async function removeFavorite(itemId) {
+    const res = await fetch(`${API_BASE}/favorites/${itemId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Failed to unfavorite');
+    return data;
+}
+
+async function getMyFavorites() {
+    const res = await fetch(`${API_BASE}/favorites/`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
+async function checkFavorite(itemId) {
+    const res = await fetch(`${API_BASE}/favorites/check/${itemId}`);
+    const data = await res.json();
+    return data.is_favorited;
+}
+
+// ==================== Avatar ====================
+
+async function uploadAvatar(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const res = await fetch(`${API_BASE}/auth/avatar`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${getToken()}` },
+        body: formData
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Upload failed');
+    return data;
+}
+
 // ==================== Chat ====================
 
 async function createChatRoom(itemId) {

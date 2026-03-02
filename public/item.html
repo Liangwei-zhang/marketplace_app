@@ -71,9 +71,14 @@
         
         <!-- Actions (shown when logged in) -->
         <div id="itemActions" style="display: none;">
-            <button class="btn btn-accent" style="width: 100%; margin-top: 16px;" id="wantBtn">
-                💬 I Want This
-            </button>
+            <div style="display: flex; gap: 8px;">
+                <button class="btn btn-accent" style="flex: 1; margin-top: 16px;" id="wantBtn">
+                    💬 I Want This
+                </button>
+                <button class="btn btn-outline" style="margin-top: 16px;" id="favoriteBtn" title="Add to favorites">
+                    🤍
+                </button>
+            </div>
             
             <!-- For seller -->
             <div id="sellerActions" style="display: none; margin-top: 16px;">
@@ -181,10 +186,24 @@
             if (currentUser && itemData.seller_id === currentUser.id) {
                 document.getElementById('wantBtn').style.display = 'none';
                 document.getElementById('sellerActions').style.display = 'block';
+                document.getElementById('favoriteBtn').style.display = 'none';
             } else if (itemData.status === 0) {
                 document.getElementById('wantBtn').style.display = 'block';
+                document.getElementById('favoriteBtn').style.display = 'block';
             } else {
                 document.getElementById('wantBtn').style.display = 'none';
+            }
+            
+            // Check favorite status
+            checkFavoriteStatus();
+        }
+        
+        async function checkFavoriteStatus() {
+            try {
+                const isFavorited = await checkFavorite(itemId);
+                document.getElementById('favoriteBtn').innerHTML = isFavorited ? '❤️' : '🤍';
+            } catch (err) {
+                console.error('Check favorite error:', err);
             }
         }
         
@@ -216,6 +235,26 @@
                 const room = await createChatRoom(itemData.id);
                 showToast('Chat room created!', 'success');
                 window.location.href = `chat.html?room=${room.id}`;
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        });
+        
+        // Favorite button
+        document.getElementById('favoriteBtn')?.addEventListener('click', async () => {
+            if (!requireAuth()) return;
+            
+            try {
+                const isFavorited = await checkFavorite(itemId);
+                if (isFavorited) {
+                    await removeFavorite(itemId);
+                    document.getElementById('favoriteBtn').innerHTML = '🤍';
+                    showToast('Removed from favorites', 'success');
+                } else {
+                    await addFavorite(itemId);
+                    document.getElementById('favoriteBtn').innerHTML = '❤️';
+                    showToast('Added to favorites!', 'success');
+                }
             } catch (err) {
                 showToast(err.message, 'error');
             }

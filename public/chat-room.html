@@ -36,6 +36,8 @@
     
     <!-- Message Input -->
     <div class="message-input-container" style="position: fixed; bottom: 60px; left: 0; right: 0;">
+        <label for="imageInput" class="btn btn-outline" style="padding: 10px;">📷</label>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;">
         <input type="text" class="message-input" id="messageInput" placeholder="Type a message...">
         <button class="btn btn-accent" id="sendBtn">Send</button>
     </div>
@@ -139,9 +141,13 @@
             
             container.innerHTML = messages.map(msg => {
                 const isSent = msg.sender_id === currentUser.id;
+                const content = msg.message_type === 'image' 
+                    ? `<img src="${msg.content}" style="max-width: 200px; border-radius: 8px;">`
+                    : `<div>${msg.content}</div>`;
+                
                 return `
                     <div class="message ${isSent ? 'message-sent' : 'message-received'}">
-                        <div>${msg.content}</div>
+                        ${content}
                         <div class="message-time">${formatDate(msg.created_at)}</div>
                     </div>
                 `;
@@ -213,6 +219,35 @@
             if (e.key === 'Enter') {
                 sendMessage();
             }
+        });
+        
+        // Image upload
+        document.getElementById('imageInput')?.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            try {
+                // Compress and upload
+                const compressed = await compressImage(file, 800, 0.7);
+                const base64 = await fileToBase64(compressed);
+                
+                // Send as image message via WebSocket or HTTP
+                const imageUrl = await uploadImages([new File([compressed], 'image.jpg', { type: 'image/jpeg' })]);
+                
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    sendWsMessage(imageUrl[0], 'image');
+                } else {
+                    await sendMessage(roomId, imageUrl[0], 'image');
+                    const messages = await getMessages(roomId);
+                    renderMessages(messages);
+                }
+                
+                showToast('Image sent!', 'success');
+            } catch (err) {
+                showToast('Failed to send image: ' + err.message, 'error');
+            }
+            
+            e.target.value = ''; // Reset input
         });
         
         // Heartbeat
