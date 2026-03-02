@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - Marketplace</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Market<span>place</span></a>
+                <div class="header-actions">
+                    <a href="publish.html" class="btn btn-accent">+ Sell</a>
+                    <a href="chat.html" class="btn btn-outline">Chat</a>
+                    <a href="profile.html" class="btn btn-outline">Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container main-content">
+        <h1 class="page-title">❤️ My Favorites</h1>
+        
+        <div id="favoritesList">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+    </main>
+    
+    <!-- Nav -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="favorites.html" class="nav-item active">
+            <span class="nav-icon">❤️</span>
+            <span>Favorites</span>
+        </a>
+        <a href="chat.html" class="nav-item">
+            <span class="nav-icon">💬</span>
+            <span>Chat</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+        </a>
+    </nav>
+    
+    <script src="js/app.js"></script>
+    <script>
+        if (!requireAuth()) {}
+        
+        async function loadFavorites() {
+            try {
+                const items = await getMyFavorites();
+                
+                if (items.length === 0) {
+                    document.getElementById('favoritesList').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">❤️</div>
+                            <p>No favorites yet</p>
+                            <a href="index.html" class="btn btn-accent" style="margin-top: 16px;">Browse items</a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                document.getElementById('favoritesList').innerHTML = `
+                    <div class="items-grid">
+                        ${items.map(item => {
+                            const images = Array.isArray(item.images) ? item.images : [];
+                            const imageUrl = images.length > 0 ? images[0] : null;
+                            const statusClass = item.status === 0 ? 'available' : item.status === 1 ? 'reserved' : 'sold';
+                            const statusText = item.status === 0 ? 'Available' : item.status === 1 ? 'Reserved' : 'Sold';
+                            
+                            return `
+                                <a href="item.html?id=${item.id}" class="card item-card">
+                                    ${imageUrl 
+                                        ? `<img src="${imageUrl}" alt="${item.title}" class="item-image">`
+                                        : '<div class="item-image-placeholder">📷</div>'
+                                    }
+                                    <div class="item-info">
+                                        <div class="item-price">${formatPrice(item.price)}</div>
+                                        <div class="item-title">${item.title}</div>
+                                        <div class="item-meta">
+                                            <span>${getCategoryLabel(item.category)}</span>
+                                            <span class="item-status status-${statusClass}">${statusText}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+            } catch (err) {
+                document.getElementById('favoritesList').innerHTML = `
+                    <div class="empty-state">Error: ${err.message}</div>
+                `;
+            }
+        }
+        
+        loadFavorites();
+    </script>
+</body>
+</html>
