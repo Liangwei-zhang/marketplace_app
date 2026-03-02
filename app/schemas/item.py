@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field, validator
-from typing import Optional, List
+from pydantic import BaseModel, Field, field_validator, model_validator
+from typing import Optional, List, Union
+import json
 from datetime import datetime
 from app.core.constants import ItemCategory, MAX_ITEM_IMAGES
 
@@ -13,7 +14,8 @@ class ItemBase(BaseModel):
     longitude: float
     address: Optional[str] = None
     
-    @validator('category')
+    @field_validator('category')
+    @classmethod
     def validate_category(cls, v):
         if v not in ItemCategory.choices():
             raise ValueError(f'Category must be one of: {ItemCategory.choices()}')
@@ -40,6 +42,16 @@ class ItemResponse(ItemBase):
     view_count: int
     created_at: datetime
     updated_at: datetime
+
+    @field_validator('images', mode='before')
+    @classmethod
+    def parse_images(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except:
+                return []
+        return v or []
 
     class Config:
         from_attributes = True
