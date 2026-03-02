@@ -56,9 +56,22 @@ async def create_transaction(
         status="pending"
     )
     
+    session.add(transaction)
+    await session.flush()  # Get transaction.id
+    
+    # Also create chat room
+    chat_room = ChatRoom(
+        item_id=trans_data.item_id,
+        buyer_id=current_user.id,
+        seller_id=item.seller_id,
+        transaction_id=transaction.id
+    )
+    session.add(chat_room)
+    
     # Update item status to reserved
     item.status = 1
     
+    session.add(item)
     session.add(transaction)
     await session.commit()
     await session.refresh(transaction)
