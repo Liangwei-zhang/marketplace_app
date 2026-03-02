@@ -255,6 +255,29 @@ async function getTransactionReviews(transactionId) {
     return res.json();
 }
 
+// ==================== Reports ====================
+
+async function createReport(data) {
+    const res = await fetch(`${API_BASE}/reports/`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getToken()}`
+        },
+        body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.detail || 'Report failed');
+    return result;
+}
+
+async function getMyReports() {
+    const res = await fetch(`${API_BASE}/reports/my`, {
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+    return res.json();
+}
+
 // ==================== Chat ====================
 
 async function createChatRoom(itemId) {
