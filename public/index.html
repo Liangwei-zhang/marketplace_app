@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Market<span>place</span></a>
+                
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search items...">
+                </div>
+                
+                <div class="header-actions">
+                    <a href="publish.html" class="btn btn-accent">+ Sell</a>
+                    <a href="chat.html" class="btn btn-outline">Chat</a>
+                    <a href="profile.html" class="btn btn-outline">Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container main-content">
+        <!-- Categories -->
+        <div class="category-tags" id="categories">
+            <span class="category-tag active" data-category="">All</span>
+            <span class="category-tag" data-category="electronics">Electronics</span>
+            <span class="category-tag" data-category="clothing">Clothing</span>
+            <span class="category-tag" data-category="furniture">Furniture</span>
+            <span class="category-tag" data-category="books">Books</span>
+            <span class="category-tag" data-category="sports">Sports</span>
+            <span class="category-tag" data-category="games">Games</span>
+            <span class="category-tag" data-category="other">Other</span>
+        </div>
+        
+        <!-- Location Info -->
+        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">
+            📍 Showing items near <span id="locationName">Calgary, AB</span>
+        </div>
+        
+        <!-- Items Grid -->
+        <div class="items-grid" id="itemsGrid">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        
+        <!-- Load More -->
+        <div style="text-align: center; padding: 20px;">
+            <button class="btn btn-outline" id="loadMoreBtn" style="display: none;">Load More</button>
+        </div>
+    </main>
+    
+    <script src="js/app.js"></script>
+    <script>
+        let currentCategory = '';
+        let offset = 0;
+        const limit = 20;
+        let userLocation = { latitude: 51.0447, longitude: -114.0719 }; // Default Calgary
+        
+        // Get user location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    userLocation = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    document.getElementById('locationName').textContent = 'Your location';
+                    loadItems();
+                },
+                () => {
+                    loadItems();
+                }
+            );
+        }
+        
+        // Category filter
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelector('.category-tag.active').classList.remove('active');
+                tag.classList.add('active');
+                currentCategory = tag.dataset.category;
+                offset = 0;
+                loadItems();
+            });
+        });
+        
+        // Search
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                offset = 0;
+                loadItems();
+            }, 300);
+        });
+        
+        // Load items
+        async function loadItems() {
+            const grid = document.getElementById('itemsGrid');
+            grid.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            
+            try {
+                let items;
+                const keyword = document.getElementById('searchInput').value;
+                
+                if (keyword) {
+                    items = await searchItems({
+                        latitude: userLocation.latitude,
+                        longitude: userLocation.longitude,
+                        radius_km: 20,
+                        keyword: keyword,
+                        category: currentCategory || undefined,
+                        limit,
+                        offset
+                    });
+                } else if (currentCategory) {
+                    items = await getItems(currentCategory, limit, offset);
+                } else {
+                    items = await searchItems({
+                        latitude: userLocation.latitude,
+                        longitude: userLocation.longitude,
+                        radius_km: 20,
+                        limit,
+                        offset
+                    });
+                }
+                
+                if (items.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <div class="empty-state-icon">📦</div>
+                            <p>No items found</p>
+                            <a href="publish.html" class="btn btn-accent" style="margin-top: 16px;">Sell something</a>
+                        </div>
+                    `;
+                    document.getElementById('loadMoreBtn').style.display = 'none';
+                    return;
+                }
+                
+                renderItems(items);
+                
+                // Show load more if there are more
+                document.getElementById('loadMoreBtn').style.display = 
+                    items.length >= limit ? 'inline-flex' : 'none';
+                    
+            } catch (err) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column: 1/-1;">Error: ${err.message}</div>`;
+            }
+        }
+        
+        function renderItems(items) {
+            const grid = document.getElementById('itemsGrid');
+            
+            const html = items.map(item => {
+                const statusClass = item.status === 0 ? 'available' : item.status === 1 ? 'reserved' : 'sold';
+                const statusText = item.status === 0 ? 'Available' : item.status === 1 ? 'Reserved' : 'Sold';
+                
+                const images = Array.isArray(item.images) ? item.images : [];
+                const imageUrl = images.length > 0 ? images[0] : null;
+                
+                return `
+                    <a href="item.html?id=${item.id}" class="card item-card">
+                        ${imageUrl 
+                            ? `<img src="${imageUrl}" alt="${item.title}" class="item-image" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                            : ''
+                        }
+                        <div class="item-image-placeholder" style="${imageUrl ? 'display:none':''}">📷</div>
+                        <div class="item-info">
+                            <div class="item-price">${formatPrice(item.price)}</div>
+                            <div class="item-title">${item.title}</div>
+                            <div class="item-meta">
+                                <span>${getCategoryLabel(item.category)}</span>
+                                <span class="item-status status-${statusClass}">${statusText}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+            
+            if (offset === 0) {
+                grid.innerHTML = html;
+            } else {
+                grid.innerHTML += html;
+            }
+        }
+        
+        // Load more
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            offset += limit;
+            loadMoreItems();
+        });
+        
+        async function loadMoreItems() {
+            try {
+                const keyword = document.getElementById('searchInput').value;
+                let items;
+                
+                if (keyword) {
+                    items = await searchItems({
+                        latitude: userLocation.latitude,
+                        longitude: userLocation.longitude,
+                        radius_km: 20,
+                        keyword: keyword,
+                        category: currentCategory || undefined,
+                        limit,
+                        offset
+                    });
+                } else if (currentCategory) {
+                    items = await getItems(currentCategory, limit, offset);
+                } else {
+                    items = await searchItems({
+                        latitude: userLocation.latitude,
+                        longitude: userLocation.longitude,
+                        radius_km: 20,
+                        limit,
+                        offset
+                    });
+                }
+                
+                renderItems(items);
+                document.getElementById('loadMoreBtn').style.display = 
+                    items.length >= limit ? 'inline-flex' : 'none';
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

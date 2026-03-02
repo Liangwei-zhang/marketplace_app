@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from contextlib import asynccontextmanager
 import os
 
@@ -9,6 +9,10 @@ from app.core.config import settings
 from app.core.database import init_db
 from app.api import auth, items, chat, transaction
 from app.websocket import chat as ws_chat
+
+
+# Frontend path
+FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "public")
 
 
 @asynccontextmanager
@@ -42,6 +46,14 @@ app.add_middleware(
 # Mount uploads directory
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
+
+# Serve frontend static files
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
+# Serve index.html for root
+@app.get("/")
+async def serve_index():
+    return FileResponse(os.path.join(FRONTEND_DIR, "index.html"))
 
 # Include routers
 app.include_router(auth.router, prefix="/api/v1")

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Item - Marketplace</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Market<span>place</span></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container main-content">
+        <h1 class="page-title" id="pageTitle">Sell an Item</h1>
+        
+        <form id="publishForm">
+            <!-- Title -->
+            <div class="form-group">
+                <label class="form-label">Title *</label>
+                <input type="text" class="form-input" name="title" required maxlength="100" placeholder="What are you selling?">
+            </div>
+            
+            <!-- Category -->
+            <div class="form-group">
+                <label class="form-label">Category *</label>
+                <select class="form-select" name="category" required>
+                    <option value="">Select category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports</option>
+                    <option value="games">Games</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <!-- Price -->
+            <div class="form-group">
+                <label class="form-label">Price ($) *</label>
+                <input type="number" class="form-input" name="price" required min="0.01" step="0.01" placeholder="0.00">
+            </div>
+            
+            <!-- Description -->
+            <div class="form-group">
+                <label class="form-label">Description *</label>
+                <textarea class="form-textarea" name="description" required maxlength="2000" placeholder="Describe your item..."></textarea>
+            </div>
+            
+            <!-- Location -->
+            <div class="form-group">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-input" name="address" placeholder="Calgary, AB">
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+            </div>
+            
+            <!-- Images -->
+            <div class="form-group">
+                <label class="form-label">Images (max 9)</label>
+                <div class="image-upload" id="imageUpload">
+                    <div style="font-size: 32px;">📷</div>
+                    <div style="margin-top: 8px; color: var(--text-secondary);">Click to upload images</div>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                </div>
+                <div class="image-preview-grid" id="imagePreview"></div>
+            </div>
+            
+            <!-- Submit -->
+            <button type="submit" class="btn btn-accent" style="width: 100%;" id="submitBtn">
+                Publish Item
+            </button>
+        </form>
+    </main>
+    
+    <script src="js/app.js"></script>
+    <script>
+        let uploadedImages = [];
+        let editItemId = null;
+        
+        // Check auth
+        if (!requireAuth()) {
+            // Will redirect
+        }
+        
+        // Get current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                },
+                () => {
+                    // Default Calgary
+                    document.getElementById('latitude').value = 51.0447;
+                    document.getElementById('longitude').value = -114.0719;
+                }
+            );
+        }
+        
+        // Check if editing
+        const urlParams = new URLSearchParams(window.location.search);
+        editItemId = urlParams.get('edit');
+        
+        if (editItemId) {
+            document.getElementById('pageTitle').textContent = 'Edit Item';
+            loadItemForEdit();
+        }
+        
+        async function loadItemForEdit() {
+            try {
+                const item = await getItem(editItemId);
+                
+                document.querySelector('[name="title"]').value = item.title;
+                document.querySelector('[name="category"]').value = item.category;
+                document.querySelector('[name="price"]').value = item.price;
+                document.querySelector('[name="description"]').value = item.description;
+                document.querySelector('[name="address"]').value = item.address || '';
+                document.getElementById('latitude').value = item.latitude;
+                document.getElementById('longitude').value = item.longitude;
+                
+                // Load images
+                const images = Array.isArray(item.images) ? item.images : [];
+                uploadedImages = images;
+                renderImagePreviews();
+                
+                document.getElementById('submitBtn').textContent = 'Save Changes';
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+        
+        // Image upload
+        document.getElementById('imageUpload').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+        
+        document.getElementById('fileInput').addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            if (uploadedImages.length + files.length > 9) {
+                showToast('Maximum 9 images allowed', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Uploading...';
+            btn.disabled = true;
+            
+            try {
+                // Compress and upload each image
+                for (const file of files) {
+                    const compressed = await compressImage(file);
+                    const base64 = await fileToBase64(compressed);
+                    
+                    // Create a mock file
+                    const blob = await (await fetch(base64)).blob();
+                    const mockFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+                    
+                    const urls = await uploadImages([mockFile]);
+                    uploadedImages.push(...urls);
+                }
+                
+                renderImagePreviews();
+            } catch (err) {
+                showToast('Upload failed: ' + err.message, 'error');
+            } finally {
+                btn.textContent = editItemId ? 'Save Changes' : 'Publish Item';
+                btn.disabled = false;
+            }
+        });
+        
+        function renderImagePreviews() {
+            const container = document.getElementById('imagePreview');
+            container.innerHTML = uploadedImages.map((url, i) => `
+                <div class="image-preview-container">
+                    <img src="${url}" alt="Preview" class="image-preview">
+                    <button type="button" class="image-preview-remove" onclick="removeImage(${i})">×</button>
+                </div>
+            `).join('');
+        }
+        
+        window.removeImage = function(index) {
+            uploadedImages.splice(index, 1);
+            renderImagePreviews();
+        };
+        
+        // Form submit
+        document.getElementById('publishForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Publishing...';
+            btn.disabled = true;
+            
+            const itemData = {
+                title: formData.title,
+                category: formData.category,
+                price: parseFloat(formData.price),
+                description: formData.description,
+                latitude: parseFloat(document.getElementById('latitude').value) || 51.0447,
+                longitude: parseFloat(document.getElementById('longitude').value) || -114.0719,
+                address: formData.address,
+                images: uploadedImages
+            };
+            
+            try {
+                let result;
+                if (editItemId) {
+                    result = await updateItem(editItemId, itemData);
+                    showToast('Item updated!', 'success');
+                } else {
+                    result = await createItem(itemData);
+                    showToast('Item published!', 'success');
+                }
+                
+                window.location.href = `item.html?id=${result.id}`;
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                btn.textContent = editItemId ? 'Save Changes' : 'Publish Item';
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
