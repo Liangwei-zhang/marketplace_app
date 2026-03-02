@@ -1,7 +1,7 @@
 from fastapi import WebSocket, WebSocketDisconnect, Depends
 from typing import Dict, List
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.core.database import async_session_maker
 from app.core.security import decode_token
@@ -86,7 +86,7 @@ async def save_message_to_db(room_id: int, sender_id: int, content: str, message
         room = result.scalar_one_or_none()
         
         if room:
-            room.updated_at = datetime.utcnow()
+            room.updated_at = datetime.now(timezone.utc)
         
         # Create message
         message = Message(
@@ -132,7 +132,7 @@ async def websocket_endpoint(websocket: WebSocket, room_id: int):
         await websocket.send_json({
             "type": "system",
             "content": "Connected to chat",
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         })
         
         # Listen for messages
@@ -152,7 +152,7 @@ async def websocket_endpoint(websocket: WebSocket, room_id: int):
             
             # Handle ping
             if message_data.get("type") == "ping":
-                await websocket.send_json({"type": "pong", "timestamp": datetime.utcnow().isoformat()})
+                await websocket.send_json({"type": "pong", "timestamp": datetime.now(timezone.utc).isoformat()})
                 continue
             
             msg_type = message_data.get("type", "text")

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.core.database import get_async_session
 from app.api.auth import get_current_user
@@ -156,7 +156,7 @@ async def complete_transaction(
         raise HTTPException(status_code=400, detail="Transaction must be confirmed first")
     
     trans.status = "completed"
-    trans.completed_at = datetime.utcnow()
+    trans.completed_at = datetime.now(timezone.utc)
     
     # Update item status to sold
     result = await session.execute(select(Item).where(Item.id == trans.item_id))

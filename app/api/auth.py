@@ -1,12 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlmodel import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from app.core.database import get_async_session
 from app.core.security import verify_password, get_password_hash, create_access_token, decode_token
+from app.core.rate_limit import login_limiter, register_limiter
 from app.models import User
 from app.schemas import UserCreate, UserUpdate, UserResponse, Token, LoginRequest
 
@@ -42,8 +43,13 @@ async def get_current_user(
 
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-async def register(user_data: UserCreate, session: AsyncSession = Depends(get_async_session)):
+async def register(user_data: UserCreate, session: AsyncSession = Depends(get_async_session), request: Request = None):
     """Register a new user."""
+    # Rate limiting
+    if request:
+        client_ip = request.client.host if request.client else "unknown"
+        if not register_limiter.is_allowed(f"register:{client_ip}"):
+            raise HTTPException(status_code=429, detail="Too many requests. Please try again later.")
     # Check username
     result = await session.execute(select(User).where(User.username == user_data.username))
     if result.scalar_one_or_none():
@@ -71,8 +77,14 @@ async def register(user_data: UserCreate, session: AsyncSession = Depends(get_as
 
 
 @router.post("/login", response_model=Token)
-async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: AsyncSession = Depends(get_async_session)):
+async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: AsyncSession = Depends(get_async_session), request: Request = None):
     """Login and get access token."""
+    # Rate limiting
+    if request:
+        client_ip = request.client.host if request.client else "unknown"
+        if not login_limiter.is_allowed(f"login:{client_ip}"):
+            raise HTTPException(status_code=429, detail="Too many attempts. Please try again later.")
+    
     result = await session.execute(select(User).where(User.username == form_data.username))
     user = result.scalar_one_or_none()
     
@@ -154,18 +166,17 @@ async def request_password_reset(
     
     token = secrets.token_urlsafe(32)
     user.reset_token = token
-    user.reset_token_expires = datetime.utcnow() + timedelta(hours=1)
+    user.reset_token_expires = datetime.now(timezone.utc) + timedelta(hours=1)
     
     session.add(user)
     await session.commit()
     
-    # In production, send email here
-    # For now, return the token (development only!)
-    return {
-        "message": "Reset token generated",
-        "token": token,  # TODO: Remove in production - send via email instead
-        "expires": user.reset_token_expires.isoformat()
-    }
+    # In production, send email with reset link here
+    # For development, log the token (remove in production!)
+    import logging
+    logging.warning(f"Password reset token for {user.email}: {token}")
+    
+    return {"message": "If the email exists, a reset link will be sent"}
 
 
 @router.post("/password-reset/confirm")
@@ -178,7 +189,7 @@ async def confirm_password_reset(
     result = await session.execute(
         select(User).where(
             User.reset_token == data.token,
-            User.reset_token_expires > datetime.utcnow()
+            User.reset_token_expires > datetime.now(timezone.utc)
         )
     )
     user = result.scalar_one_or_none()
