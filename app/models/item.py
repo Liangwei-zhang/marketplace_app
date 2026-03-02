@@ -24,8 +24,8 @@ class Item(SQLModel, table=True):
     # Images
     images: str = Field(default="[]")  # JSON array of URLs
     
-    # Status: 0=在售, 1=交易中, 2=已完成
-    status: int = Field(default=0)
+    # Status: 0=在售, 1=交易中, 2=已售出
+    status: int = Field(default=0, index=True)
     
     # Foreign keys
     seller_id: int = Field(foreign_key="users.id")

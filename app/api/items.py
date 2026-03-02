@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
 from sqlmodel import select, func, and_
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,12 +9,19 @@ import json
 
 from app.core.database import get_async_session
 from app.core.config import settings
+from app.core.constants import ItemCategory, MAX_ITEM_IMAGES, ALLOWED_IMAGE_EXTENSIONS
 from app.api.auth import get_current_user
 from app.models import User, Item
-from app.schemas import ItemCreate, ItemUpdate, ItemResponse, ItemSearchRequest
+from app.schemas import ItemCreate, ItemUpdate, ItemResponse, ItemSearchRequest, CategoryListResponse
 from app.services import image_service
 
 router = APIRouter(prefix="/items", tags=["items"])
+
+
+@router.get("/categories", response_model=CategoryListResponse)
+async def list_categories():
+    """Get all available categories."""
+    return CategoryListResponse(categories=ItemCategory.choices())
 
 
 @router.post("/", response_model=ItemResponse, status_code=201)
@@ -24,6 +31,13 @@ async def create_item(
     session: AsyncSession = Depends(get_async_session)
 ):
     """Create a new item."""
+    # Validate image count
+    if len(item_data.images) > MAX_ITEM_IMAGES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Maximum {MAX_ITEM_IMAGES} images allowed"
+        )
+    
     item = Item(
         title=item_data.title,
         description=item_data.description,
@@ -49,6 +63,22 @@ async def upload_images(
     current_user: User = Depends(get_current_user)
 ):
     """Upload item images with compression."""
+    # Check max files
+    if len(files) > MAX_ITEM_IMAGES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Maximum {MAX_ITEM_IMAGES} images allowed"
+        )
+    
+    # Validate file extensions
+    for f in files:
+        ext = f.filename.split(".")[-1].lower() if "." in f.filename else ""
+        if ext not in ALLOWED_IMAGE_EXTENSIONS:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Allowed extensions: {', '.join(ALLOWED_IMAGE_EXTENSIONS)}"
+            )
+    
     filenames = await image_service.save_uploads(files, current_user.id)
     return [image_service.get_image_url(f) for f in filenames]
 
@@ -60,7 +90,7 @@ async def list_items(
     offset: int = 0,
     session: AsyncSession = Depends(get_async_session)
 ):
-    """List all items (no location filter)."""
+    """List all items (no location filter) - sorted by newest first."""
     query = select(Item).where(Item.status == 0).order_by(Item.created_at.desc())
     
     if category:
@@ -78,69 +108,102 @@ async def search_items_nearby(
     search: ItemSearchRequest,
     session: AsyncSession = Depends(get_async_session)
 ):
-    """Search items by location (LBS) with filters."""
-    # PostgreSQL: calculate distance using Haversine formula
-    # ST_DistanceSphere is more accurate for earth
-    query = text("""
-        SELECT *,
-        (6371 * acos(
-            cos(radians(:lat)) * cos(radians(latitude)) *
-            cos(radians(longitude) - radians(:lng)) +
-            sin(radians(:lat)) * sin(radians(latitude))
-        )) AS distance
-        FROM items
-        WHERE status = 0
-        AND (6371 * acos(
-            cos(radians(:lat)) * cos(radians(latitude)) *
-            cos(radians(longitude) - radians(:lng)) +
-            sin(radians(:lat)) * sin(radians(latitude))
-        )) <= :radius
-    """)
+    """Search items by location with expanding radius fallback.
     
-    params = {
-        "lat": search.latitude,
-        "lng": search.longitude,
-        "radius": search.radius_km
-    }
+    If no results found in initial radius, automatically expands:
+    5km → 10km → 20km → unlimited
+    """
+    # Try with increasing radius until we find results
+    radii_to_try = [search.radius_km, 10, 20, 100]  # 100 means unlimited
+    seen_ids = set()
     
-    if search.category:
-        query = text(str(query).replace("WHERE status = 0", "WHERE status = 0 AND category = :category"))
-        params["category"] = search.category
+    for radius in radii_to_try:
+        if radius == 100:
+            # Unlimited search
+            base_query = """
+                SELECT id FROM items
+                WHERE status = 0
+            """
+            params = {}
+        else:
+            # Distance-based search
+            base_query = """
+                SELECT id FROM items
+                WHERE status = 0
+                AND (6371 * acos(
+                    cos(radians(:lat)) * cos(radians(latitude)) *
+                    cos(radians(longitude) - radians(:lng)) +
+                    sin(radians(:lat)) * sin(radians(latitude))
+                )) <= :radius
+            """
+            params = {
+                "lat": search.latitude,
+                "lng": search.longitude,
+                "radius": radius
+            }
+        
+        # Build where clause
+        conditions = ["status = 0"]
+        
+        if search.category:
+            conditions.append("category = :category")
+            params["category"] = search.category
+        
+        if search.min_price is not None:
+            conditions.append("price >= :min_price")
+            params["min_price"] = search.min_price
+        
+        if search.max_price is not None:
+            conditions.append("price <= :max_price")
+            params["max_price"] = search.max_price
+        
+        if search.keyword:
+            conditions.append("(title ILIKE :keyword OR description ILIKE :keyword)")
+            params["keyword"] = f"%{search.keyword}%"
+        
+        where_clause = " AND ".join(conditions)
+        
+        # Sort
+        if search.sort_by == "price":
+            sort_clause = "ORDER BY price " + ("ASC" if search.sort_order == "asc" else "DESC")
+        else:
+            sort_clause = "ORDER BY created_at " + ("ASC" if search.sort_order == "asc" else "DESC")
+        
+        query_str = f"SELECT id FROM items WHERE {where_clause} {sort_clause} LIMIT :limit OFFSET :offset"
+        params["limit"] = search.limit
+        params["offset"] = search.offset
+        
+        result = await session.execute(text(query_str), params)
+        rows = result.fetchall()
+        
+        # Get new IDs
+        new_ids = [row[0] for row in rows if row[0] not in seen_ids]
+        seen_ids.update(new_ids)
+        
+        if new_ids:
+            break
     
-    if search.min_price is not None:
-        query = text(str(query).replace("WHERE status = 0", "WHERE status = 0 AND price >= :min_price"))
-        params["min_price"] = search.min_price
-    
-    if search.max_price is not None:
-        query = text(str(query).replace("WHERE status = 0", "WHERE status = 0 AND price <= :max_price"))
-        params["max_price"] = search.max_price
-    
-    if search.keyword:
-        query = text(str(query).replace("WHERE status = 0", 
-            "WHERE status = 0 AND (title ILIKE :keyword OR description ILIKE :keyword)"))
-        params["keyword"] = f"%{search.keyword}%"
-    
-    query = text(str(query) + " ORDER BY distance LIMIT :limit OFFSET :offset")
-    params["limit"] = search.limit
-    params["offset"] = search.offset
-    
-    result = await session.execute(query)
-    rows = result.fetchall()
-    
-    # Get item IDs and fetch full objects
-    item_ids = [row[0] for row in rows]
-    if not item_ids:
+    if not seen_ids:
         return []
     
-    items_query = select(Item).where(Item.id.in_(item_ids))
-    items_result = await session.execute(items_query)
-    items = items_result.scalars().all()
+    # Fetch full items
+    items_query = select(Item).where(Item.id.in_(list(seen_ids)))
+    result = await session.execute(items_query)
+    items = list(result.scalars().all())
     
-    # Sort by distance
-    items_dict = {item.id: item for item in items}
-    sorted_items = [items_dict[id] for id in item_ids if id in items_dict]
+    # Sort according to search criteria
+    if search.sort_by == "price":
+        items.sort(
+            key=lambda x: x.price,
+            reverse=(search.sort_order == "desc")
+        )
+    else:
+        items.sort(
+            key=lambda x: x.created_at,
+            reverse=(search.sort_order == "desc")
+        )
     
-    return sorted_items
+    return items[:search.limit]
 
 
 @router.get("/{item_id}", response_model=ItemResponse)
