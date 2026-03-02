@@ -7,7 +7,9 @@ import os
 
 from app.core.config import settings
 from app.core.database import init_db
+from app.core.logging import LoggingMiddleware, logger
 from app.api import auth, items, chat, transaction, review, report, admin, favorite, push, history, follow, search_history, analytics
+from app.api.logs import router as logs_router
 from app.websocket import chat as ws_chat
 
 
@@ -18,12 +20,12 @@ FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "public")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    print("Initializing database...")
+    logger.info("Initializing database...")
     await init_db()
-    print("Database initialized!")
+    logger.info("Database initialized!")
     yield
     # Shutdown
-    print("Shutting down...")
+    logger.info("Shutting down...")
 
 
 # Create FastAPI app
@@ -33,6 +35,9 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+# Add logging middleware
+app.add_middleware(LoggingMiddleware)
 
 # CORS
 app.add_middleware(
@@ -69,6 +74,7 @@ app.include_router(history.router, prefix="/api/v1")
 app.include_router(follow.router, prefix="/api/v1")
 app.include_router(search_history.router, prefix="/api/v1")
 app.include_router(analytics.router, prefix="/api/v1")
+app.include_router(logs_router)
 
 # WebSocket endpoint
 @app.websocket("/ws/chat/{room_id}")
