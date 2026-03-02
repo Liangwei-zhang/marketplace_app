@@ -14,6 +14,7 @@ class ChatRoom(SQLModel, table=True):
     item_id: int = Field(foreign_key="items.id")
     buyer_id: int = Field(foreign_key="users.id")
     seller_id: int = Field(foreign_key="users.id")
+    transaction_id: Optional[int] = Field(default=None, foreign_key="transactions.id")
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 

@@ -137,12 +137,22 @@ async def websocket_endpoint(websocket: WebSocket, room_id: int):
         
         # Listen for messages
         while True:
-            data = await websocket.receive_text()
+            try:
+                # Use receive() with timeout for heartbeat
+                msg = await websocket.receive_text()
+            except Exception:
+                # Connection closed
+                break
             
             try:
-                message_data = json.loads(data)
+                message_data = json.loads(msg)
             except json.JSONDecodeError:
                 await websocket.send_json({"error": "Invalid JSON"})
+                continue
+            
+            # Handle ping
+            if message_data.get("type") == "ping":
+                await websocket.send_json({"type": "pong", "timestamp": datetime.utcnow().isoformat()})
                 continue
             
             msg_type = message_data.get("type", "text")

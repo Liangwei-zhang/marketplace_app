@@ -3,6 +3,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlmodel import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
+from datetime import datetime
 
 from app.core.database import get_async_session
 from app.core.security import verify_password, get_password_hash, create_access_token, decode_token
@@ -118,3 +119,82 @@ async def update_me(
     await session.refresh(current_user)
     
     return current_user
+
+
+# Password reset schemas
+from pydantic import BaseModel as PydanticBaseModel
+
+
+class PasswordResetRequest(PydanticBaseModel):
+    email: str
+
+
+class PasswordResetConfirm(PydanticBaseModel):
+    token: str
+    new_password: str
+
+
+@router.post("/password-reset/request")
+async def request_password_reset(
+    data: PasswordResetRequest,
+    session: AsyncSession = Depends(get_async_session)
+):
+    """Request password reset - sends reset token to email."""
+    # Find user by email
+    result = await session.execute(select(User).where(User.email == data.email))
+    user = result.scalar_one_or_none()
+    
+    # Always return success to prevent email enumeration
+    if not user:
+        return {"message": "If the email exists, a reset link will be sent"}
+    
+    # Generate reset token
+    import secrets
+    from datetime import timedelta
+    
+    token = secrets.token_urlsafe(32)
+    user.reset_token = token
+    user.reset_token_expires = datetime.utcnow() + timedelta(hours=1)
+    
+    session.add(user)
+    await session.commit()
+    
+    # In production, send email here
+    # For now, return the token (development only!)
+    return {
+        "message": "Reset token generated",
+        "token": token,  # TODO: Remove in production - send via email instead
+        "expires": user.reset_token_expires.isoformat()
+    }
+
+
+@router.post("/password-reset/confirm")
+async def confirm_password_reset(
+    data: PasswordResetConfirm,
+    session: AsyncSession = Depends(get_async_session)
+):
+    """Confirm password reset with token."""
+    # Find user by token
+    result = await session.execute(
+        select(User).where(
+            User.reset_token == data.token,
+            User.reset_token_expires > datetime.utcnow()
+        )
+    )
+    user = result.scalar_one_or_none()
+    
+    if not user:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid or expired reset token"
+        )
+    
+    # Update password
+    user.hashed_password = get_password_hash(data.new_password)
+    user.reset_token = None
+    user.reset_token_expires = None
+    
+    session.add(user)
+    await session.commit()
+    
+    return {"message": "Password reset successful"}

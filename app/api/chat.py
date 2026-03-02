@@ -5,7 +5,7 @@ from typing import List
 
 from app.core.database import get_async_session
 from app.api.auth import get_current_user
-from app.models import User, Item, ChatRoom, Message
+from app.models import User, Item, ChatRoom, Message, Transaction
 from app.schemas import ChatRoomCreate, ChatRoomResponse, MessageCreate, MessageResponse, ChatRoomDetail
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -17,7 +17,10 @@ async def create_chat_room(
     current_user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_async_session)
 ):
-    """Create or get existing chat room for an item."""
+    """Create or get existing chat room for an item.
+    
+    Also creates a Transaction record to link chat with the deal.
+    """
     # Check item exists
     result = await session.execute(select(Item).where(Item.id == room_data.item_id))
     item = result.scalar_one_or_none()
@@ -40,11 +43,23 @@ async def create_chat_room(
     if room:
         return room
     
-    # Create new room
+    # Create transaction first
+    transaction = Transaction(
+        item_id=room_data.item_id,
+        buyer_id=current_user.id,
+        seller_id=item.seller_id,
+        agreed_price=item.price,  # Start with asking price
+        status="pending"
+    )
+    session.add(transaction)
+    await session.flush()  # Get transaction.id
+    
+    # Create new room with transaction link
     room = ChatRoom(
         item_id=room_data.item_id,
         buyer_id=current_user.id,
-        seller_id=item.seller_id
+        seller_id=item.seller_id,
+        transaction_id=transaction.id
     )
     
     session.add(room)

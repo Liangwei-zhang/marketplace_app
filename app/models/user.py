@@ -22,6 +22,10 @@ class User(SQLModel, table=True):
     is_active: bool = Field(default=True)
     is_superuser: bool = Field(default=False)
     created_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    # Password reset
+    reset_token: Optional[str] = Field(default=None, index=True)
+    reset_token_expires: Optional[datetime] = Field(default=None)
 
     # Relationships
     items: List["Item"] = Relationship(back_populates="seller", sa_relationship_kwargs={"foreign_keys": "Item.seller_id"})

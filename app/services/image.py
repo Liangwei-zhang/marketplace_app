@@ -47,8 +47,8 @@ class ImageService:
         with open(temp_path, "wb") as f:
             f.write(content)
         
-        # Compress
-        self.compress_image(temp_path, final_path)
+        # Compress (run in thread to avoid blocking)
+        await asyncio.to_thread(self.compress_image, temp_path, final_path)
         
         # Remove temp
         os.remove(temp_path)

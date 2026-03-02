@@ -190,10 +190,13 @@ async def cancel_transaction(
     if trans.status == "completed":
         raise HTTPException(status_code=400, detail="Cannot cancel completed transaction")
     
+    # Save old status for item revert check
+    was_active = trans.status in ["pending", "confirmed"]
+    
     trans.status = "cancelled"
     
     # If this was the active transaction, revert item status
-    if trans.status in ["pending", "confirmed"]:
+    if was_active:
         result = await session.execute(select(Item).where(Item.id == trans.item_id))
         item = result.scalar_one_or_none()
         if item and item.status == 1:
