@@ -64,7 +64,7 @@
             btn.disabled = true;
             
             try {
-                const result = await login(formData.username, formData.password);
+                const result = await login(formData.get('username'), formData.get('password'));
                 setToken(result.access_token);
                 
                 // Get user info

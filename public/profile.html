@@ -162,8 +162,8 @@
             
             try {
                 await updateProfile({
-                    full_name: formData.fullName,
-                    phone: formData.phone
+                    full_name: formData.get('fullName'),
+                    phone: formData.get('phone')
                 });
                 
                 showToast('Profile updated!', 'success');

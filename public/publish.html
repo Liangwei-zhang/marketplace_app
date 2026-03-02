@@ -202,13 +202,13 @@
             btn.disabled = true;
             
             const itemData = {
-                title: formData.title,
-                category: formData.category,
-                price: parseFloat(formData.price),
-                description: formData.description,
+                title: formData.get('title'),
+                category: formData.get('category'),
+                price: parseFloat(formData.get('price')),
+                description: formData.get('description'),
                 latitude: parseFloat(document.getElementById('latitude').value) || 51.0447,
                 longitude: parseFloat(document.getElementById('longitude').value) || -114.0719,
-                address: formData.address,
+                address: formData.get('address'),
                 images: uploadedImages
             };
             

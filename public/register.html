@@ -61,10 +61,10 @@
             
             try {
                 await register(
-                    formData.username,
-                    formData.email,
-                    formData.password,
-                    formData.fullName
+                    formData.get('username'),
+                    formData.get('email'),
+                    formData.get('password'),
+                    formData.get('fullName')
                 );
                 
                 showToast('Account created! Please login.', 'success');
