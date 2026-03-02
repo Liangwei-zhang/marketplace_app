@@ -5,12 +5,12 @@ from fastapi.responses import FileResponse
 from datetime import datetime, timedelta
 from typing import Optional
 
-logger = APIRouter(prefix="/logs", tags=["logs"])
+router = APIRouter(prefix="/logs", tags=["logs"])
 
 LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
 
 
-@logger.get("/")
+@router.get("/")
 async def get_logs(
     lines: int = 100,
     level: Optional[str] = None
@@ -38,7 +38,7 @@ async def get_logs(
     }
 
 
-@logger.get("/errors")
+@router.get("/errors")
 async def get_errors(
     hours: int = 24
 ):
@@ -61,7 +61,7 @@ async def get_errors(
     }
 
 
-@logger.get("/download/{filename}")
+@router.get("/download/{filename}")
 async def download_log(filename: str):
     """下载日志文件"""
     allowed_files = ["app.log", "error.log"]
@@ -81,7 +81,7 @@ async def download_log(filename: str):
     )
 
 
-@logger.get("/stats")
+@router.get("/stats")
 async def get_log_stats():
     """获取日志统计"""
     stats = {}
