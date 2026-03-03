@@ -60,6 +60,19 @@ app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 async def serve_index():
     return FileResponse(os.path.join(FRONTEND_DIR, "index.html"))
 
+# Serve other HTML pages
+@app.get("/{page}.html")
+async def serve_html(page: str):
+    file_path = os.path.join(FRONTEND_DIR, f"{page}.html")
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return JSONResponse({"detail": "Not found"}, status_code=404)
+
+# Serve favicon
+@app.get("/favicon.ico")
+async def serve_favicon():
+    return FileResponse(os.path.join(FRONTEND_DIR, "favicon.ico"))
+
 # Include routers
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(items.router, prefix="/api/v1")

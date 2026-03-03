@@ -151,6 +151,10 @@ class ImageService:
         results = await asyncio.gather(*tasks, return_exceptions=True)
         return [r for r in results if not isinstance(r, Exception)]
     
+    async def save_uploads(self, files: List, user_id: int) -> List[dict]:
+        """Alias for process_uploads - for backward compatibility."""
+        return await self.process_uploads(files, user_id)
+    
     def delete_image(self, filename: str) -> bool:
         """Delete image and its thumbnail."""
         try:

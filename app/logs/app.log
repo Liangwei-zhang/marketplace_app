@@ -3,3 +3,853 @@
 2026-03-02 15:06:21,257 - marketplace - INFO - → POST /api/v1/auth/register
 2026-03-02 15:06:21,449 - marketplace - INFO - ← POST /api/v1/auth/register Status: 201 Time: 0.191s
 2026-03-02 15:06:37,402 - marketplace - INFO - Shutting down...
+2026-03-02 15:52:35,692 - marketplace - INFO - Initializing database...
+2026-03-02 15:52:35,722 - marketplace - INFO - Database initialized!
+2026-03-02 15:52:39,114 - marketplace - INFO - → GET /api/v1/items/categories
+2026-03-02 15:52:39,115 - marketplace - INFO - ← GET /api/v1/items/categories Status: 200 Time: 0.001s
+2026-03-02 15:52:50,206 - marketplace - INFO - Shutting down...
+2026-03-02 15:52:56,227 - marketplace - INFO - Initializing database...
+2026-03-02 15:52:56,257 - marketplace - INFO - Database initialized!
+2026-03-02 15:52:57,658 - marketplace - INFO - → GET /api/v1/items/categories
+2026-03-02 15:52:57,658 - marketplace - INFO - ← GET /api/v1/items/categories Status: 200 Time: 0.001s
+2026-03-02 15:58:59,825 - marketplace - INFO - → GET /favicon.ico
+2026-03-02 15:58:59,826 - marketplace - INFO - ← GET /favicon.ico Status: 404 Time: 0.001s
+2026-03-02 16:15:20,343 - marketplace - INFO - → GET /index.html
+2026-03-02 16:15:20,344 - marketplace - INFO - ← GET /index.html Status: 404 Time: 0.001s
+2026-03-02 16:15:23,382 - marketplace - INFO - → GET /admin.html
+2026-03-02 16:15:23,382 - marketplace - INFO - ← GET /admin.html Status: 404 Time: 0.001s
+2026-03-02 16:15:26,891 - marketplace - INFO - → GET /api/orders
+2026-03-02 16:15:26,893 - marketplace - INFO - ← GET /api/orders Status: 404 Time: 0.001s
+2026-03-02 16:15:27,221 - marketplace - INFO - → GET /index.html
+2026-03-02 16:15:27,222 - marketplace - INFO - ← GET /index.html Status: 404 Time: 0.001s
+2026-03-02 20:40:06,818 - marketplace - INFO - Initializing database...
+2026-03-02 20:40:06,850 - marketplace - INFO - Database initialized!
+2026-03-02 20:40:18,597 - marketplace - INFO - → GET /
+2026-03-02 20:40:18,599 - marketplace - INFO - ← GET / Status: 200 Time: 0.003s
+2026-03-02 20:50:21,447 - marketplace - INFO - → GET /
+2026-03-02 20:50:21,448 - marketplace - INFO - ← GET / Status: 200 Time: 0.001s
+2026-03-02 20:50:21,462 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:50:21,463 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:50:21,465 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:50:21,465 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.000s
+2026-03-02 20:50:27,221 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:50:27,268 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.047s
+2026-03-02 20:50:27,858 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:27,859 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:50,099 - marketplace - INFO - → GET /item.html
+2026-03-02 20:50:50,100 - marketplace - INFO - ← GET /item.html Status: 404 Time: 0.001s
+2026-03-02 20:50:50,127 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:50,128 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:50,541 - marketplace - INFO - → GET /favicon.ico
+2026-03-02 20:50:50,542 - marketplace - INFO - ← GET /favicon.ico Status: 404 Time: 0.000s
+2026-03-02 20:50:54,064 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:54,064 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:54,066 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:54,066 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:56,241 - marketplace - INFO - → GET /chat.html
+2026-03-02 20:50:56,241 - marketplace - INFO - ← GET /chat.html Status: 404 Time: 0.000s
+2026-03-02 20:50:56,272 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:56,273 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:58,804 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:58,804 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:50:58,811 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:50:58,811 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:01,282 - marketplace - INFO - → GET /index.html
+2026-03-02 20:51:01,283 - marketplace - INFO - ← GET /index.html Status: 404 Time: 0.000s
+2026-03-02 20:51:01,320 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:01,321 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:13,603 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:13,604 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:13,606 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:13,606 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:14,183 - marketplace - INFO - → GET /profile.html
+2026-03-02 20:51:14,184 - marketplace - INFO - ← GET /profile.html Status: 404 Time: 0.000s
+2026-03-02 20:51:14,224 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:14,224 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:16,645 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:16,646 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:16,652 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:51:16,652 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:51:24,528 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:51:24,532 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 20:51:36,907 - marketplace - INFO - → GET /logs
+2026-03-02 20:51:36,907 - marketplace - INFO - ← GET /logs Status: 307 Time: 0.000s
+2026-03-02 20:51:36,909 - marketplace - INFO - → GET /logs/
+2026-03-02 20:51:36,909 - marketplace - INFO - ← GET /logs/ Status: 200 Time: 0.001s
+2026-03-02 20:52:55,559 - marketplace - INFO - Initializing database...
+2026-03-02 20:52:55,590 - marketplace - INFO - Database initialized!
+2026-03-02 20:53:08,345 - marketplace - INFO - → GET /index.html
+2026-03-02 20:53:08,348 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.003s
+2026-03-02 20:53:12,886 - marketplace - INFO - → GET /item.html
+2026-03-02 20:53:12,886 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 20:53:12,893 - marketplace - INFO - → GET /profile.html
+2026-03-02 20:53:12,893 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.000s
+2026-03-02 20:53:28,363 - marketplace - INFO - → GET /logs/
+2026-03-02 20:53:28,364 - marketplace - INFO - ← GET /logs/ Status: 200 Time: 0.001s
+2026-03-02 20:54:16,149 - marketplace - INFO - → GET /
+2026-03-02 20:54:16,150 - marketplace - INFO - ← GET / Status: 200 Time: 0.001s
+2026-03-02 20:54:16,171 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:54:16,171 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:54:16,175 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:54:16,177 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:54:16,179 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:54:16,179 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:54:18,880 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:54:18,905 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.026s
+2026-03-02 20:54:21,294 - marketplace - INFO - → GET /chat.html
+2026-03-02 20:54:21,295 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 20:54:21,321 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:54:21,321 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:54:21,324 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:54:21,325 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:54:21,325 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:54:21,326 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:54:21,672 - marketplace - INFO - → GET /login.html
+2026-03-02 20:54:21,673 - marketplace - INFO - ← GET /login.html Status: 200 Time: 0.001s
+2026-03-02 20:54:21,674 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 20:54:21,675 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 401 Time: 0.001s
+2026-03-02 20:54:21,705 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:54:21,706 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:54:21,709 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:54:21,709 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:54:21,711 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:54:21,711 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:54:34,254 - marketplace - INFO - → GET /register.html
+2026-03-02 20:54:34,255 - marketplace - INFO - ← GET /register.html Status: 200 Time: 0.001s
+2026-03-02 20:54:34,289 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:54:34,289 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:54:34,295 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:54:34,296 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:54:34,298 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:54:34,298 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:54:46,323 - marketplace - INFO - Initializing database...
+2026-03-02 20:54:46,355 - marketplace - INFO - Database initialized!
+2026-03-02 20:54:50,512 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:54:54,735 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:55:14,852 - marketplace - INFO - Initializing database...
+2026-03-02 20:55:14,882 - marketplace - INFO - Database initialized!
+2026-03-02 20:55:28,149 - marketplace - INFO - → GET /favicon.ico
+2026-03-02 20:55:28,151 - marketplace - INFO - ← GET /favicon.ico Status: 200 Time: 0.002s
+2026-03-02 20:55:54,462 - marketplace - INFO - Initializing database...
+2026-03-02 20:55:54,494 - marketplace - INFO - Database initialized!
+2026-03-02 20:56:09,540 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:56:09,544 - marketplace - INFO - ← POST /api/v1/auth/register Status: 422 Time: 0.004s
+2026-03-02 20:56:14,341 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:57:10,873 - marketplace - INFO - Initializing database...
+2026-03-02 20:57:10,905 - marketplace - INFO - Database initialized!
+2026-03-02 20:57:28,963 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:57:29,153 - marketplace - INFO - ← POST /api/v1/auth/register Status: 201 Time: 0.190s
+2026-03-02 20:57:38,932 - marketplace - INFO - → POST /api/v1/auth/login
+2026-03-02 20:57:39,100 - marketplace - INFO - ← POST /api/v1/auth/login Status: 200 Time: 0.169s
+2026-03-02 20:58:23,995 - marketplace - INFO - → POST /api/v1/auth/register
+2026-03-02 20:58:24,166 - marketplace - INFO - ← POST /api/v1/auth/register Status: 201 Time: 0.172s
+2026-03-02 20:58:24,177 - marketplace - INFO - → GET /login.html
+2026-03-02 20:58:24,180 - marketplace - INFO - ← GET /login.html Status: 200 Time: 0.003s
+2026-03-02 20:58:24,230 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:24,231 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:24,232 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:24,233 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:58:24,235 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:24,236 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:36,730 - marketplace - INFO - → POST /api/v1/auth/login
+2026-03-02 20:58:36,897 - marketplace - INFO - ← POST /api/v1/auth/login Status: 200 Time: 0.167s
+2026-03-02 20:58:36,900 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 20:58:36,902 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.002s
+2026-03-02 20:58:36,912 - marketplace - INFO - → GET /index.html
+2026-03-02 20:58:36,913 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:58:36,972 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:36,973 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:36,976 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:36,976 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:36,978 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:58:36,979 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:58:39,986 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:58:40,003 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.017s
+2026-03-02 20:58:41,708 - marketplace - INFO - → GET /profile.html
+2026-03-02 20:58:41,709 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 20:58:41,774 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:41,775 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:41,778 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:41,779 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:41,780 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:41,780 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:58:42,144 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 20:58:42,145 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 20:58:42,148 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.004s
+2026-03-02 20:58:42,165 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 20:58:42,165 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 20:58:42,169 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.024s
+2026-03-02 20:58:42,225 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 20:58:42,228 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 20:58:42,230 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 20:58:42,233 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.008s
+2026-03-02 20:58:42,234 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.006s
+2026-03-02 20:58:42,252 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.022s
+2026-03-02 20:58:49,371 - marketplace - INFO - → GET /chat.html
+2026-03-02 20:58:49,371 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 20:58:49,448 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:49,448 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 20:58:49,451 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:49,452 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:58:49,454 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:49,454 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:49,843 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 20:58:49,849 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.006s
+2026-03-02 20:58:51,023 - marketplace - INFO - → GET /history.html
+2026-03-02 20:58:51,024 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 20:58:51,102 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:51,103 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:51,108 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:51,108 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:58:51,109 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:51,111 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:51,478 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 20:58:51,483 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.005s
+2026-03-02 20:58:53,481 - marketplace - INFO - → GET /favorites.html
+2026-03-02 20:58:53,482 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 20:58:53,561 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:53,561 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:53,566 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:53,567 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:53,568 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:53,568 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:58:53,938 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 20:58:53,945 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.007s
+2026-03-02 20:58:55,531 - marketplace - INFO - → GET /index.html
+2026-03-02 20:58:55,531 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:58:55,626 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:58:55,626 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:58:55,631 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:58:55,631 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:58:55,632 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:58:55,633 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:58:56,093 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:58:56,097 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.004s
+2026-03-02 20:59:02,112 - marketplace - INFO - → GET /chat.html
+2026-03-02 20:59:02,113 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 20:59:02,208 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:02,209 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:02,213 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:02,214 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:59:02,216 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:02,216 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:59:02,597 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 20:59:02,601 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.004s
+2026-03-02 20:59:05,559 - marketplace - INFO - → GET /api/v1/transactions/my
+2026-03-02 20:59:05,559 - marketplace - INFO - → GET /api/v1/transactions/my
+2026-03-02 20:59:05,564 - marketplace - INFO - ← GET /api/v1/transactions/my Status: 200 Time: 0.006s
+2026-03-02 20:59:05,564 - marketplace - INFO - ← GET /api/v1/transactions/my Status: 200 Time: 0.006s
+2026-03-02 20:59:08,662 - marketplace - INFO - → GET /favorites.html
+2026-03-02 20:59:08,663 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 20:59:08,763 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:08,764 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:08,768 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:08,768 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:08,770 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:59:08,770 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:59:09,144 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 20:59:09,148 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.004s
+2026-03-02 20:59:10,990 - marketplace - INFO - → GET /index.html
+2026-03-02 20:59:10,991 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:59:11,073 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:11,073 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:11,078 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:11,078 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:11,079 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:59:11,080 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:59:13,990 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:59:14,004 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.014s
+2026-03-02 20:59:18,151 - marketplace - INFO - → GET /item.html
+2026-03-02 20:59:18,152 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 20:59:18,245 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:18,246 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:18,250 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:18,251 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:59:18,275 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:18,275 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:59:18,620 - marketplace - INFO - → GET /api/v1/items/1
+2026-03-02 20:59:18,629 - marketplace - INFO - ← GET /api/v1/items/1 Status: 200 Time: 0.010s
+2026-03-02 20:59:18,635 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 20:59:18,638 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.002s
+2026-03-02 20:59:18,696 - marketplace - INFO - → GET /api/v1/favorites/check/1
+2026-03-02 20:59:18,697 - marketplace - INFO - ← GET /api/v1/favorites/check/1 Status: 401 Time: 0.001s
+2026-03-02 20:59:26,830 - marketplace - INFO - → GET /index.html
+2026-03-02 20:59:26,831 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:59:26,912 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:26,913 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:26,918 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:26,919 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:59:26,920 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:26,921 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.000s
+2026-03-02 20:59:27,365 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:59:27,369 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 20:59:28,709 - marketplace - INFO - → GET /item.html
+2026-03-02 20:59:28,710 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 20:59:28,806 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:28,806 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:28,811 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:28,811 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:28,812 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:59:28,813 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:59:29,183 - marketplace - INFO - → GET /api/v1/items/3
+2026-03-02 20:59:29,191 - marketplace - INFO - ← GET /api/v1/items/3 Status: 200 Time: 0.008s
+2026-03-02 20:59:29,202 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 20:59:29,204 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.002s
+2026-03-02 20:59:29,266 - marketplace - INFO - → GET /api/v1/favorites/check/3
+2026-03-02 20:59:29,266 - marketplace - INFO - ← GET /api/v1/favorites/check/3 Status: 401 Time: 0.001s
+2026-03-02 20:59:31,469 - marketplace - INFO - → GET /index.html
+2026-03-02 20:59:31,470 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:59:31,551 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:31,551 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:31,556 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:31,556 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:31,558 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:59:31,558 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 20:59:31,981 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:59:31,985 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.005s
+2026-03-02 20:59:51,434 - marketplace - INFO - → GET /index.html
+2026-03-02 20:59:51,435 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 20:59:51,510 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:51,510 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:51,514 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:51,515 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 20:59:51,516 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:51,517 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 20:59:54,269 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 20:59:54,273 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 20:59:59,819 - marketplace - INFO - → GET /favorites.html
+2026-03-02 20:59:59,820 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 20:59:59,899 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 20:59:59,899 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 20:59:59,904 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 20:59:59,904 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 20:59:59,906 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 20:59:59,906 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:00:00,263 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:00:00,266 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.003s
+2026-03-02 21:00:03,468 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:00:03,468 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:00:03,557 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:00:03,557 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:00:03,563 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:00:03,564 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:00:03,564 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:00:03,565 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:00:03,922 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:00:03,926 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.004s
+2026-03-02 21:00:06,084 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:00:06,085 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:00:06,163 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:00:06,163 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:00:06,172 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:00:06,172 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:00:06,173 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:00:06,173 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:00:06,526 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:00:06,529 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:00:06,533 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.007s
+2026-03-02 21:00:06,533 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.004s
+2026-03-02 21:00:06,549 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:00:06,549 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:00:06,550 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.002s
+2026-03-02 21:00:06,553 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:00:06,554 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.005s
+2026-03-02 21:00:06,556 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.003s
+2026-03-02 21:00:06,615 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:00:06,618 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:00:09,151 - marketplace - INFO - → GET /publish.html
+2026-03-02 21:00:09,152 - marketplace - INFO - ← GET /publish.html Status: 200 Time: 0.001s
+2026-03-02 21:00:09,238 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:00:09,239 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:00:09,243 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:00:09,243 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:00:09,244 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:00:09,245 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:01:02,219 - marketplace - INFO - → POST /api/v1/items/upload
+2026-03-02 21:01:10,936 - marketplace - INFO - → GET /logs/
+2026-03-02 21:01:10,937 - marketplace - INFO - ← GET /logs/ Status: 200 Time: 0.001s
+2026-03-02 21:01:52,483 - marketplace - INFO - → POST /api/v1/items/upload
+2026-03-02 21:01:57,989 - marketplace - INFO - → POST /api/v1/items/
+2026-03-02 21:01:57,999 - marketplace - INFO - ← POST /api/v1/items/ Status: 201 Time: 0.010s
+2026-03-02 21:01:58,008 - marketplace - INFO - → GET /item.html
+2026-03-02 21:01:58,009 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 21:01:58,092 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:01:58,093 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 21:01:58,094 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:01:58,095 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:01:58,096 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:01:58,097 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.000s
+2026-03-02 21:01:58,438 - marketplace - INFO - → GET /api/v1/items/4
+2026-03-02 21:01:58,447 - marketplace - INFO - ← GET /api/v1/items/4 Status: 200 Time: 0.009s
+2026-03-02 21:01:58,491 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:01:58,494 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:01:58,546 - marketplace - INFO - → GET /api/v1/favorites/check/4
+2026-03-02 21:01:58,546 - marketplace - INFO - ← GET /api/v1/favorites/check/4 Status: 401 Time: 0.001s
+2026-03-02 21:02:29,710 - marketplace - INFO - → GET /index.html
+2026-03-02 21:02:29,711 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:02:29,801 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:02:29,802 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 21:02:29,806 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:02:29,806 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:02:29,807 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:02:29,808 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:02:32,667 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:02:32,671 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 21:02:45,604 - marketplace - INFO - Initializing database...
+2026-03-02 21:02:45,635 - marketplace - INFO - Database initialized!
+2026-03-02 21:03:01,074 - marketplace - INFO - → GET /history.html
+2026-03-02 21:03:01,078 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.003s
+2026-03-02 21:03:01,092 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:03:01,094 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:03:01,116 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:03:01,117 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:03:01,118 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:03:01,119 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:03:01,458 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:03:01,476 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.018s
+2026-03-02 21:03:15,811 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:03:15,812 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:03:20,277 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:03:20,277 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:03:24,381 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:03:24,386 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.004s
+2026-03-02 21:12:00,228 - marketplace - INFO - → GET /history.html
+2026-03-02 21:12:00,229 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 21:12:00,254 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:00,254 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:00,257 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:00,258 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:12:00,260 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:00,260 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:00,600 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:12:00,603 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.004s
+2026-03-02 21:12:06,270 - marketplace - INFO - → GET /favorites.html
+2026-03-02 21:12:06,271 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 21:12:06,299 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:06,299 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:06,303 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:06,303 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:06,305 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:06,305 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:06,658 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:12:06,663 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.005s
+2026-03-02 21:12:07,815 - marketplace - INFO - → GET /history.html
+2026-03-02 21:12:07,816 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 21:12:07,856 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:07,857 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:07,861 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:07,862 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:07,862 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:12:07,863 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:12:08,222 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:12:08,226 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.004s
+2026-03-02 21:12:09,354 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:12:09,354 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:12:09,399 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:09,399 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:09,402 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:09,403 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:09,404 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:09,405 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:12:09,763 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:12:09,768 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.006s
+2026-03-02 21:12:10,982 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:12:10,983 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:12:11,041 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:11,042 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:11,044 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:11,044 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:11,045 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:11,046 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:11,398 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:12:11,399 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:12:11,404 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.006s
+2026-03-02 21:12:11,422 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:12:11,422 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.001s
+2026-03-02 21:12:11,426 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.027s
+2026-03-02 21:12:11,479 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:12:11,481 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:12:11,483 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.004s
+2026-03-02 21:12:11,485 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:12:11,487 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.006s
+2026-03-02 21:12:11,488 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.004s
+2026-03-02 21:12:12,647 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:12:12,648 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:12:12,713 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:12,713 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:12,717 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:12,718 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:12,719 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:12:12,720 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:13,074 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:12:13,078 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.004s
+2026-03-02 21:12:14,070 - marketplace - INFO - → GET /history.html
+2026-03-02 21:12:14,071 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 21:12:14,145 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:14,145 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:14,152 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:14,152 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:14,154 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:14,154 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:12:14,515 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:12:14,518 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.004s
+2026-03-02 21:12:15,983 - marketplace - INFO - → GET /favorites.html
+2026-03-02 21:12:15,984 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 21:12:16,071 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:16,072 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:16,075 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:16,076 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:16,077 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:12:16,077 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:16,445 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:12:16,449 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.004s
+2026-03-02 21:12:17,472 - marketplace - INFO - → GET /index.html
+2026-03-02 21:12:17,473 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:12:17,559 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:17,559 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:17,563 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:17,563 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:17,565 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:17,565 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:20,337 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:12:20,354 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.017s
+2026-03-02 21:12:36,935 - marketplace - INFO - → GET /favorites.html
+2026-03-02 21:12:36,936 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 21:12:37,015 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:37,016 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:37,020 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:37,021 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:12:37,023 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:37,023 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:37,391 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:12:37,394 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.003s
+2026-03-02 21:12:39,428 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:12:39,428 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:12:39,507 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:12:39,508 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:12:39,513 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:12:39,513 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:12:39,514 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:12:39,515 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:12:39,877 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:12:39,879 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:12:39,880 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:12:39,881 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:12:39,894 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:12:39,894 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:12:39,894 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.001s
+2026-03-02 21:12:39,895 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:12:39,897 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.003s
+2026-03-02 21:12:39,898 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.003s
+2026-03-02 21:12:39,951 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:12:39,954 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:16:13,541 - marketplace - INFO - → GET /i18n.js
+2026-03-02 21:16:13,541 - marketplace - INFO - ← GET /i18n.js Status: 404 Time: 0.000s
+2026-03-02 21:16:31,789 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:16:31,790 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:18:50,352 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:18:50,353 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:18:50,459 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:18:50,459 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:18:50,474 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:18:50,475 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:18:50,476 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:18:50,477 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.000s
+2026-03-02 21:18:50,478 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:18:50,478 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.000s
+2026-03-02 21:18:50,787 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:18:50,788 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:18:50,790 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:18:50,791 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:18:50,800 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:18:50,801 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:18:50,801 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:18:50,802 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.002s
+2026-03-02 21:18:50,803 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.003s
+2026-03-02 21:18:50,804 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.003s
+2026-03-02 21:18:50,856 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:18:50,860 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.004s
+2026-03-02 21:18:57,141 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:18:57,142 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:18:57,218 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:18:57,218 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:18:57,220 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:18:57,221 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:18:57,221 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:18:57,222 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:18:57,223 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:18:57,224 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:18:57,582 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:18:57,583 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:18:57,585 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:18:57,586 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:18:57,600 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:18:57,601 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:18:57,601 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:18:57,603 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.003s
+2026-03-02 21:18:57,604 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.004s
+2026-03-02 21:18:57,605 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.004s
+2026-03-02 21:18:57,648 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:18:57,651 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:19:06,490 - marketplace - INFO - → GET /favorites.html
+2026-03-02 21:19:06,490 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 21:19:06,574 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:06,575 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:06,579 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:06,580 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:19:06,581 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:06,582 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.000s
+2026-03-02 21:19:06,583 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:06,584 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.000s
+2026-03-02 21:19:06,969 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:19:06,973 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.004s
+2026-03-02 21:19:08,776 - marketplace - INFO - → GET /history.html
+2026-03-02 21:19:08,777 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 21:19:08,864 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:08,865 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:08,870 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:08,870 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:08,871 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:08,872 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:19:08,874 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.003s
+2026-03-02 21:19:08,874 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.004s
+2026-03-02 21:19:09,248 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:19:09,252 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.004s
+2026-03-02 21:19:10,062 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:19:10,062 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:19:10,146 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:10,146 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:10,151 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:10,152 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:10,152 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:10,153 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:19:10,154 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.003s
+2026-03-02 21:19:10,154 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.002s
+2026-03-02 21:19:10,530 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:19:10,534 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.004s
+2026-03-02 21:19:11,488 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:19:11,489 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:19:11,587 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:11,587 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 21:19:11,592 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:11,592 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:11,592 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:11,594 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:19:11,595 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.003s
+2026-03-02 21:19:11,595 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.004s
+2026-03-02 21:19:11,190 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:19:11,191 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:19:11,193 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:19:11,194 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:19:11,207 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:19:11,208 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:19:11,208 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:19:11,209 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.002s
+2026-03-02 21:19:11,210 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.002s
+2026-03-02 21:19:11,210 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.003s
+2026-03-02 21:19:11,258 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:19:11,261 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:19:12,671 - marketplace - INFO - → GET /index.html
+2026-03-02 21:19:12,671 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:19:12,748 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:12,749 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:12,753 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:12,754 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:12,755 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:19:12,755 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:12,756 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:19:12,757 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.003s
+2026-03-02 21:19:15,541 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:19:15,557 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.016s
+2026-03-02 21:19:21,189 - marketplace - INFO - → GET /item.html
+2026-03-02 21:19:21,190 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 21:19:21,283 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:21,283 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 21:19:21,289 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:21,290 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:19:21,292 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:21,292 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:19:21,294 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:21,295 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.000s
+2026-03-02 21:19:21,725 - marketplace - INFO - → GET /api/v1/items/4
+2026-03-02 21:19:21,735 - marketplace - INFO - ← GET /api/v1/items/4 Status: 200 Time: 0.010s
+2026-03-02 21:19:21,743 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:19:21,746 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:19:21,801 - marketplace - INFO - → GET /api/v1/favorites/check/4
+2026-03-02 21:19:21,802 - marketplace - INFO - ← GET /api/v1/favorites/check/4 Status: 401 Time: 0.001s
+2026-03-02 21:19:28,799 - marketplace - INFO - → GET /index.html
+2026-03-02 21:19:28,800 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:19:28,883 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:28,884 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:28,887 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:28,888 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:28,889 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:19:28,890 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.003s
+2026-03-02 21:19:28,892 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:28,893 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:19:29,336 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:19:29,341 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.004s
+2026-03-02 21:19:30,648 - marketplace - INFO - → GET /item.html
+2026-03-02 21:19:30,648 - marketplace - INFO - ← GET /item.html Status: 200 Time: 0.001s
+2026-03-02 21:19:30,732 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:30,733 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:30,738 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:30,739 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:30,739 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:30,741 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.003s
+2026-03-02 21:19:30,742 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.003s
+2026-03-02 21:19:30,742 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.003s
+2026-03-02 21:19:31,105 - marketplace - INFO - → GET /api/v1/items/3
+2026-03-02 21:19:31,113 - marketplace - INFO - ← GET /api/v1/items/3 Status: 200 Time: 0.008s
+2026-03-02 21:19:31,119 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:19:31,122 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:19:31,173 - marketplace - INFO - → GET /api/v1/favorites/check/3
+2026-03-02 21:19:31,173 - marketplace - INFO - ← GET /api/v1/favorites/check/3 Status: 401 Time: 0.001s
+2026-03-02 21:19:32,946 - marketplace - INFO - → GET /index.html
+2026-03-02 21:19:32,947 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:19:33,042 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:33,043 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:33,047 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:33,048 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:33,048 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:33,050 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.002s
+2026-03-02 21:19:33,050 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:19:33,051 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.004s
+2026-03-02 21:19:33,502 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:19:33,505 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 21:19:40,178 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:19:40,178 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:19:40,261 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:40,261 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:40,267 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:40,267 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:19:40,269 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:40,270 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:19:40,271 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:40,272 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:19:40,638 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:19:40,642 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.004s
+2026-03-02 21:19:43,009 - marketplace - INFO - → GET /api/v1/transactions/my
+2026-03-02 21:19:43,010 - marketplace - INFO - → GET /api/v1/transactions/my
+2026-03-02 21:19:43,013 - marketplace - INFO - ← GET /api/v1/transactions/my Status: 200 Time: 0.005s
+2026-03-02 21:19:43,014 - marketplace - INFO - ← GET /api/v1/transactions/my Status: 200 Time: 0.004s
+2026-03-02 21:19:46,315 - marketplace - INFO - → GET /index.html
+2026-03-02 21:19:46,316 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:19:46,409 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:19:46,409 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:19:46,417 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:19:46,417 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:19:46,418 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:19:46,419 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:19:46,420 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.002s
+2026-03-02 21:19:46,421 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.004s
+2026-03-02 21:19:49,182 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:19:49,185 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 21:19:58,629 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:19:58,629 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:19:58,631 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:19:58,634 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:20:00,427 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:20:00,427 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:20:00,430 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:20:00,433 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.003s
+2026-03-02 21:20:01,507 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:20:01,507 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:20:01,509 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:20:01,511 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.002s
+2026-03-02 21:20:02,640 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:20:02,641 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:20:02,642 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:20:02,644 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.002s
+2026-03-02 21:20:05,538 - marketplace - INFO - → GET /index.html
+2026-03-02 21:20:05,539 - marketplace - INFO - ← GET /index.html Status: 200 Time: 0.001s
+2026-03-02 21:20:05,618 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:20:05,619 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:20:05,622 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:20:05,623 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:20:05,645 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:20:05,646 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:20:05,647 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:20:05,648 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.000s
+2026-03-02 21:20:06,039 - marketplace - INFO - → POST /api/v1/items/search
+2026-03-02 21:20:06,043 - marketplace - INFO - ← POST /api/v1/items/search Status: 200 Time: 0.003s
+2026-03-02 21:20:07,060 - marketplace - INFO - → GET /favorites.html
+2026-03-02 21:20:07,061 - marketplace - INFO - ← GET /favorites.html Status: 200 Time: 0.001s
+2026-03-02 21:20:07,141 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:20:07,141 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:20:07,146 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:20:07,147 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:20:07,147 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:20:07,148 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.002s
+2026-03-02 21:20:07,150 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.003s
+2026-03-02 21:20:07,152 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.005s
+2026-03-02 21:20:07,523 - marketplace - INFO - → GET /api/v1/favorites/
+2026-03-02 21:20:07,526 - marketplace - INFO - ← GET /api/v1/favorites/ Status: 200 Time: 0.003s
+2026-03-02 21:20:08,486 - marketplace - INFO - → GET /history.html
+2026-03-02 21:20:08,486 - marketplace - INFO - ← GET /history.html Status: 200 Time: 0.001s
+2026-03-02 21:20:08,577 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:20:08,578 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:20:08,583 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:20:08,583 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:20:08,584 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:20:08,585 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:20:08,586 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.003s
+2026-03-02 21:20:08,587 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.002s
+2026-03-02 21:20:08,948 - marketplace - INFO - → GET /api/v1/history/
+2026-03-02 21:20:08,952 - marketplace - INFO - ← GET /api/v1/history/ Status: 200 Time: 0.004s
+2026-03-02 21:20:09,750 - marketplace - INFO - → GET /chat.html
+2026-03-02 21:20:09,751 - marketplace - INFO - ← GET /chat.html Status: 200 Time: 0.001s
+2026-03-02 21:20:09,834 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:20:09,834 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:20:09,839 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:20:09,840 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:20:09,841 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:20:09,842 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.001s
+2026-03-02 21:20:09,842 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.003s
+2026-03-02 21:20:09,843 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.003s
+2026-03-02 21:20:10,212 - marketplace - INFO - → GET /api/v1/chat/rooms
+2026-03-02 21:20:10,216 - marketplace - INFO - ← GET /api/v1/chat/rooms Status: 200 Time: 0.003s
+2026-03-02 21:20:10,846 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:20:10,847 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:20:10,934 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:20:10,934 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.000s
+2026-03-02 21:20:10,940 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:20:10,941 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:20:10,941 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:20:10,943 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.002s
+2026-03-02 21:20:10,944 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.003s
+2026-03-02 21:20:10,944 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.003s
+2026-03-02 21:20:11,303 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:20:11,304 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:20:11,306 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:20:11,307 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.002s
+2026-03-02 21:20:11,321 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:20:11,321 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:20:11,321 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:20:11,323 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.002s
+2026-03-02 21:20:11,325 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.003s
+2026-03-02 21:20:11,325 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.003s
+2026-03-02 21:20:11,369 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:20:11,373 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.004s
+2026-03-02 21:56:32,070 - marketplace - INFO - → GET /profile.html
+2026-03-02 21:56:32,071 - marketplace - INFO - ← GET /profile.html Status: 200 Time: 0.001s
+2026-03-02 21:56:32,096 - marketplace - INFO - → GET /.well-known/appspecific/com.chrome.devtools.json
+2026-03-02 21:56:32,097 - marketplace - INFO - ← GET /.well-known/appspecific/com.chrome.devtools.json Status: 404 Time: 0.001s
+2026-03-02 21:56:32,098 - marketplace - INFO - → GET /static/css/styles.css
+2026-03-02 21:56:32,099 - marketplace - INFO - ← GET /static/css/styles.css Status: 200 Time: 0.001s
+2026-03-02 21:56:32,104 - marketplace - INFO - → GET /static/js/app.js
+2026-03-02 21:56:32,105 - marketplace - INFO - ← GET /static/js/app.js Status: 200 Time: 0.001s
+2026-03-02 21:56:32,106 - marketplace - INFO - → GET /static/js/i18n.js
+2026-03-02 21:56:32,107 - marketplace - INFO - ← GET /static/js/i18n.js Status: 200 Time: 0.000s
+2026-03-02 21:56:32,446 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:56:32,447 - marketplace - INFO - → GET /api/v1/auth/me
+2026-03-02 21:56:32,449 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.003s
+2026-03-02 21:56:32,450 - marketplace - INFO - ← GET /api/v1/auth/me Status: 200 Time: 0.002s
+2026-03-02 21:56:32,453 - marketplace - INFO - → GET /api/v1/items
+2026-03-02 21:56:32,453 - marketplace - INFO - ← GET /api/v1/items Status: 307 Time: 0.000s
+2026-03-02 21:56:32,496 - marketplace - INFO - → GET /api/v1/items/
+2026-03-02 21:56:32,499 - marketplace - INFO - ← GET /api/v1/items/ Status: 200 Time: 0.004s
+2026-03-02 21:56:32,517 - marketplace - INFO - → GET /api/v1/reviews/stats/6
+2026-03-02 21:56:32,519 - marketplace - INFO - → GET /api/v1/reviews/user/6
+2026-03-02 21:56:32,522 - marketplace - INFO - ← GET /api/v1/reviews/stats/6 Status: 200 Time: 0.004s
+2026-03-02 21:56:32,523 - marketplace - INFO - ← GET /api/v1/reviews/user/6 Status: 200 Time: 0.004s
